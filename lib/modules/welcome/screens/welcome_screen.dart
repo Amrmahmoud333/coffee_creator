@@ -9,38 +9,48 @@ class WelcomeScreen extends StatelessWidget {
           Image(
             image: AssetImage('assets/images/welcome.jpeg'),
             width: double.infinity,
-            height: 450,
+            fit: BoxFit.cover,
+            height: MediaQuery.of(context).size.height * 0.5,                    //50
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 51),
-            child: Column(children: [
-              Container(
+          Column(children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),        //5
+            Container(
+              height: MediaQuery.of(context).size.height * 0.20,
+              child: Center(
+                child: FittedBox(
+                  child: Text(
+                    'Create & Drinking your coffee\nas you like, Now just breathe,\nrelax and enjoy to have your\ncoffee.',
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),        //5
+            Container(
+              height: MediaQuery.of(context).size.height * 0.06,                 //6
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: ElevatedButton(
+                onPressed: () {},
                 child: Text(
-                  'Create & Drinking your coffee as you like, Now just breathe, relax and enjoy to have your coffee.',
-                  style: Theme.of(context).textTheme.headline2,
-                ),
-                height: 136,
-                width: 291,
-              ),
-              Container(
-                height: 54,
-                width: 213,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Log in',style: Theme.of(context).textTheme.headline1,),
+                  'Log in',
+                  style: Theme.of(context).textTheme.headline1,
                 ),
               ),
-              SizedBox(height: 22,),
-              Container(
-                height: 54,
-                width: 213,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text('Sign up',style: Theme.of(context).textTheme.headline1,),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02,),        //2
+            Container(
+              height: MediaQuery.of(context).size.height * 0.06,                 //6
+              width: MediaQuery.of(context).size.width * 0.5,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'Sign up',
+                  style: Theme.of(context).textTheme.headline1,
                 ),
               ),
-            ]),
-          ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.06,),
+          ]),
         ],
       ),
     );
