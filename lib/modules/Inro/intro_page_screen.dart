@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class IntroPageScreen extends StatelessWidget {
   const IntroPageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+    ));
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color(0xffffffff),
       body: SingleChildScrollView(
@@ -18,10 +26,11 @@ class IntroPageScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 37, 39, 0),
+                  padding: EdgeInsets.fromLTRB(
+                      width * 0.07, height * 0.04, width * 0.09, 0),
                   child: Container(
-                    width: 81,
-                    height: 81,
+                    width: width * 0.19,
+                    height: height * 0.096,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.black,
@@ -35,18 +44,25 @@ class IntroPageScreen extends StatelessWidget {
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 44, 119, 0),
-                      child: Text('Hi, Amr!',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline1), //TODO change the name
+                      padding: EdgeInsets.fromLTRB(
+                          0, height * 0.05, width * 0.30, 0),
+                      child: SizedBox(
+                        width: width * 0.31,
+                        height: height * 0.04,
+                        child: AutoSizeText('Hi, Amr!',
+                            style:
+                                TextStyle(fontFamily: 'Roboto', fontSize: 28)),
+                      ), //TODO change the name
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 98, 0),
-                      child: Text(' Let\'s Drink',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline2), //TODO change the name
+                      padding: EdgeInsets.fromLTRB(0, 0, width * 0.25, 0),
+                      child: SizedBox(
+                        width: width * 0.32,
+                        height: height * 0.03,
+                        child: AutoSizeText(' Let\'s Drink',
+                            style:
+                                TextStyle(fontFamily: 'Roboto', fontSize: 21)),
+                      ), //TODO change the name
                     ),
                   ],
                 ),
@@ -56,59 +72,73 @@ class IntroPageScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 99, 0, 0),
-                  child: Container(
-                    width: 145,
-                    height: 220,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(23),
+                  padding:
+                      EdgeInsets.fromLTRB(width * 0.07, height * 0.12, 0, 0),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      width: width * 0.37,
+                      height: height * 0.25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(23),
+                        ),
+                        color: const Color(0xffe6d6c7),
                       ),
-                      color: const Color(0xffe6d6c7),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(33, 55, 13, 54),
-                      child: Text("Make your coffee",
-                          style: const TextStyle(
-                              color: const Color(0xff000000),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 28.0),
-                          textAlign: TextAlign.left),
+                      child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 33, vertical: 55),
+                        //(width * 0.09, 55, 13, 54),
+
+                        child: SizedBox(
+                          width: width * 0.25,
+                          height: height * 0.13,
+                          child: AutoSizeText(
+                            "Make your coffee",
+                            style: TextStyle(fontSize: 28),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  width: 41,
+                  width: width * 0.05,
                 ),
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(41, 0, 28.4, 0),
+                      padding:
+                          EdgeInsets.fromLTRB(width * 0.05, 0, width * 0.05, 0),
                       child: SvgPicture.asset(
                         'assets/images/cup.svg',
-                        height: 163.2,
-                        width: 145.6,
+                        height: height * 0.19,
+                        width: width * 0.37,
                       ),
                     ),
                     Container(
-                      width: 146,
-                      height: 156,
+                      width: width * 0.37,
+                      height: height * 0.18,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(23)),
                           border: Border.all(
                               color: const Color(0xffe6d6c7), width: 5)),
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 60, 20, 50),
-                        child: Text('Menu',
-                            style: const TextStyle(
-                                color: const Color(0xff000000),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Roboto",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 28.0),
-                            textAlign: TextAlign.left),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.09, vertical: height * 0.06),
+                        child: SizedBox(
+                          width: width * 0.25,
+                          height: height * 0.13,
+                          child: AutoSizeText(
+                            'Menu',
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -116,58 +146,68 @@ class IntroPageScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 33,
+              height: height * 0.03,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                  width: 250,
-                  height: 285,
+                  width: width * 0.50,
+                  height: height * 0.34,
                   child: Stack(
                     children: [
                       PositionedDirectional(
-                        start: 85,
+                        start: width * 0.19,
                         top: 0,
                         child: SvgPicture.asset(
                           'assets/images/boy.svg',
-                          height: 200,
-                          width: 100,
+                          height: height * 0.23,
+                          width: width * 0.25,
                         ),
                       ),
                       PositionedDirectional(
-                        start: 30,
-                        top: 105,
+                        start: width * 0.076,
+                        top: height * 0.121,
                         child: Container(
-                          width: 146,
-                          height: 159,
+                          width: width * 0.30,
+                          height: height * 0.18,
                           decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(23)),
                               border: Border.all(
                                   color: const Color(0xffe6d6c7), width: 5)),
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(33, 43, 29, 42),
-                            child: Text('Save Drinks',
-                                style: const TextStyle(
-                                    color: const Color(0xff000000),
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: "Roboto",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 28.0),
-                                textAlign: TextAlign.left),
+                            //TODO
+                            padding: EdgeInsets.symmetric(
+                                horizontal: width * 0.05,
+                                vertical: height * 0.05),
+                            child: SizedBox(
+                              width: width * 0.21,
+                              height: height * 0.8,
+                              child: AutoSizeText(
+                                'Save Drinks',
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ],
                   ),
                 ),
+                SizedBox(
+                  width: width * 0.04,
+                ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 50, 28, 122),
+                  padding: EdgeInsets.fromLTRB(0, height * 0.05, 0, 0),
                   child: Container(
-                    width: 145,
-                    height: 220,
+                    width: width * 0.35,
+                    height: height * 0.25,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
                         Radius.circular(23),
@@ -175,15 +215,20 @@ class IntroPageScreen extends StatelessWidget {
                       color: const Color(0xffe6d6c7),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(33, 55, 13, 54),
-                      child: Text("Make your coffee",
-                          style: const TextStyle(
-                              color: const Color(0xff000000),
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Roboto",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 28.0),
-                          textAlign: TextAlign.left),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.04, vertical: height * 0.08),
+                      child: SizedBox(
+                        width: width * 0.31,
+                        height: height * 0.08,
+                        child: AutoSizeText(
+                          "Favourite Drinks",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
                     ),
                   ),
                 ),

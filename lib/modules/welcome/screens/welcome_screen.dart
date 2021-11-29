@@ -10,10 +10,12 @@ class WelcomeScreen extends StatelessWidget {
             image: AssetImage('assets/images/welcome.jpeg'),
             width: double.infinity,
             fit: BoxFit.cover,
-            height: MediaQuery.of(context).size.height * 0.5,                    //50
+            height: MediaQuery.of(context).size.height * 0.5, //50
           ),
           Column(children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),        //5
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ), //5
             Container(
               height: MediaQuery.of(context).size.height * 0.20,
               child: Center(
@@ -25,9 +27,11 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.05,),        //5
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ), //5
             Container(
-              height: MediaQuery.of(context).size.height * 0.06,                 //6
+              height: MediaQuery.of(context).size.height * 0.06, //6
               width: MediaQuery.of(context).size.width * 0.5,
               child: ElevatedButton(
                 onPressed: () {},
@@ -37,9 +41,11 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02,),        //2
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ), //2
             Container(
-              height: MediaQuery.of(context).size.height * 0.06,                 //6
+              height: MediaQuery.of(context).size.height * 0.06, //6
               width: MediaQuery.of(context).size.width * 0.5,
               child: ElevatedButton(
                 onPressed: () {},
@@ -49,7 +55,6 @@ class WelcomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.06,),
           ]),
         ],
       ),
