@@ -10,6 +10,7 @@ import '../widgets/login_pptions_widget.dart';
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var screenHeightSize = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
@@ -19,12 +20,12 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
+              height: screenHeightSize * 0.1,
             ), // 10
             RoundedTitleWidget(), // 25
             FormWidget(), // 30
             Container(
-              height: MediaQuery.of(context).size.height * 0.06, // 6
+              height: screenHeightSize * 0.06, // 6
               width: MediaQuery.of(context).size.width * 0.45,
               child: ElevatedButton(
                 onPressed: () {},
@@ -35,15 +36,15 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03, // 3
+              height: screenHeightSize * 0.03, // 3
             ),
             SeparateWidget(), // 5
             LoginOptionsWidget(), // 10
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
+              height: screenHeightSize * 0.07,
             ), // 5
             Container(
-              height: MediaQuery.of(context).size.height * 0.06, // 6
+              height: screenHeightSize * 0.07, // 6
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Theme.of(context).accentColor,

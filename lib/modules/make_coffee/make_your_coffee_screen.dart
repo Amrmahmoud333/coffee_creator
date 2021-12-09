@@ -20,9 +20,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
     ));
-    return ScreenUtilInit(
-      designSize: Size(393, 851),
-      builder: () => Scaffold(
+    return Scaffold(
         backgroundColor: const Color(0xffffffff),
         body: SingleChildScrollView(
           child: Column(
@@ -647,7 +645,6 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
             ],
           ),
         ),
-      ),
     );
   }
 }
