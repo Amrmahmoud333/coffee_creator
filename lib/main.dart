@@ -1,6 +1,7 @@
 import 'package:coffee_creator/modules/Inro/intro_page_screen.dart';
 import 'package:coffee_creator/modules/login/screens/login_screen.dart';
-import 'package:coffee_creator/modules/make_coffee/make_your_coffee_screen.dart';
+import 'package:coffee_creator/modules/make_coffee/screens/make_your_coffee_screen.dart';
+import 'package:coffee_creator/modules/saved_drinks/screens/saved_drinks.dart';
 import 'package:coffee_creator/modules/welcome/screens/welcome_screen.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      DevicePreview(
+        enabled: !kReleaseMode,
+        builder: (context) => MyApp(), // Wrap your app
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   @override
@@ -50,7 +56,7 @@ class MyApp extends StatelessWidget {
             child: widget!,
           );
         },
-        home: WelcomeScreen(),
+        home: SavedDrinks(),
       ),
     );
   }
