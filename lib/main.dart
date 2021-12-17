@@ -10,10 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() => runApp(
-      DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => MyApp(), // Wrap your app
-      ),
+      MyApp()
     );
 
 class MyApp extends StatelessWidget {
@@ -56,7 +53,7 @@ class MyApp extends StatelessWidget {
             child: widget!,
           );
         },
-        home: SavedDrinks(),
+        home: LoginScreen(),
       ),
     );
   }

@@ -1,57 +1,66 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double height(double n) {
+      return MediaQuery.of(context).size.height * (n / 851);
+    }
+
+    double width(double n) {
+      return MediaQuery.of(context).size.width * (n / 393);
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              height: 450.h,
+              height: height(450),
               width: double.infinity,
               child: Image(
                 image: AssetImage('assets/images/welcome.jpeg'),
                 fit: BoxFit.fill,
               ),
             ),
-            SizedBox(height: 47.h),
+            SizedBox(height: height(47)),
             Container(
-              height: 136.h,
-              width: 291.w,
+              height: height(136),
+              width: width(291),
               child: Center(
-                child: Text(
-                  'Create & Drinking your coffee as you like, Now just breathe,relax and enjoy to have your coffee.',
+                child: AutoSizeText(
+                  'Create & Drinking your coffee as you like, Now just breathe, relax and enjoy to have your coffee.',
                   style: TextStyle(
-                    fontSize: 22.sp,
+                    fontSize: 22,
                   ),
                 ),
               ),
             ),
             Container(
-              height: 54.h,
-              width: 213.w,
+              height: height(54),
+              width: width(213),
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text(
+                child: AutoSizeText(
                   'Log in',
                   style: TextStyle(
-                    fontSize: 28.sp,
+                    fontSize: 28,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 22.h,),
+            SizedBox(
+              height: height(22),
+            ),
             Container(
-              height: 54.h,
-              width: 213.w,
+              height: height(54),
+              width: width(213),
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text(
+                child: AutoSizeText(
                   'Sign up',
                   style: TextStyle(
-                    fontSize: 28.sp,
+                    fontSize: 28,
                   ),
                 ),
               ),
