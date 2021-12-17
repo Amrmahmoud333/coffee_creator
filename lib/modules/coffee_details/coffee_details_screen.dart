@@ -15,7 +15,7 @@ class CoffeeDetailsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Column(
           children: [
             SizedBox(
@@ -83,7 +83,7 @@ class CoffeeDetailsScreen extends StatelessWidget {
             ),
             Container(
               width: width(256),
-              child: Text(
+              child: AutoSizeText(
                   "Hot Coffee drink using espresso without sugar, Hazelnut flavor.",
                   style: const TextStyle(
                       color: const Color(0xff000000),

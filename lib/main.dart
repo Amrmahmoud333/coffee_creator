@@ -1,4 +1,4 @@
-import 'package:coffee_creator/modules/Inro/intro_page_screen.dart';
+import 'package:coffee_creator/modules/intro/intro_page_screen.dart';
 import 'package:coffee_creator/modules/coffee_details/coffee_details_screen.dart';
 import 'package:coffee_creator/modules/favorite_drinks/widgets/favorite_card.dart';
 import 'package:coffee_creator/modules/login/screens/login_screen.dart';
