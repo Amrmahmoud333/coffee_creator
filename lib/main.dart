@@ -5,21 +5,13 @@ import 'package:coffee_creator/modules/login/screens/login_screen.dart';
 import 'package:coffee_creator/modules/make_coffee/screens/make_your_coffee_screen.dart';
 import 'package:coffee_creator/modules/saved_drinks/screens/saved_drinks.dart';
 import 'package:coffee_creator/modules/welcome/screens/welcome_screen.dart';
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'modules/favorite_drinks/screens/favorite_drinks_screen.dart';
 
-void main() => runApp(
-<<<<<<< Updated upstream
-      MyApp()
-=======
-      MyApp(), // Wrap your app
->>>>>>> Stashed changes
-    );
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -51,25 +43,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-<<<<<<< Updated upstream
-        builder: (context, widget) {
-          return MediaQuery(
-            //Setting font does not change with system font size
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: widget!,
-          );
-        },
-        home: LoginScreen(),
-=======
->>>>>>> Stashed changes
       ),
-      builder: (context, widget) {
-        return MediaQuery(
-          //Setting font does not change with system font size
-          data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-          child: widget!,
-        );
-      },
       home: CoffeeDetailsScreen(),
     );
   }
