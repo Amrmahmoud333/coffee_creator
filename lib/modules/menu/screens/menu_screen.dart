@@ -7,9 +7,10 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+  String _title = 'Cold drinks';
+
   @override
   Widget build(BuildContext context) {
-    String _title = '';
     final List<String> titles = [
       "Iced Latte",
       "Iced Coffee",
@@ -136,9 +137,8 @@ class _MenuScreenState extends State<MenuScreen> {
                 titles: titles,
                 images: images,
                 onPageChanged: (page) {
-                  if (page! > 3.0){
+                  if (page! == 3.0){
                     setState(() {
-                      print(page);
                       _title = 'Hot Drinks';
                     });
                   }
