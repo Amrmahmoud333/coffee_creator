@@ -110,7 +110,6 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
         ),
       ),
-
     ];
     return Scaffold(
       appBar: AppBar(
@@ -137,7 +136,11 @@ class _MenuScreenState extends State<MenuScreen> {
                 titles: titles,
                 images: images,
                 onPageChanged: (page) {
+<<<<<<< Updated upstream
                   if (page! == 3.0){
+=======
+                  if (page! > 3.0) {
+>>>>>>> Stashed changes
                     setState(() {
                       _title = 'Hot Drinks';
                     });
