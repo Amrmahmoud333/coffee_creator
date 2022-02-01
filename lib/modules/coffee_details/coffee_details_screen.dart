@@ -22,20 +22,23 @@ class CoffeeDetailsScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(82.0),
         child: AppBar(
+          elevation: 15,
           centerTitle: true,
           leading: IconButton(
             icon:
                 Icon(Icons.menu, size: width(40)), // change this size and style
             onPressed: () => _scaffoldKey.currentState?.openDrawer(),
           ),
-          title: AutoSizeText(
-            'Your coffee',
-            style: const TextStyle(
-                color: const Color(0xff000000),
-                fontWeight: FontWeight.w400,
-                fontFamily: "Roboto",
-                fontStyle: FontStyle.normal,
-                fontSize: 30.0),
+          title: Center(
+            child: AutoSizeText(
+              'Your coffee',
+              style: const TextStyle(
+                  color: const Color(0xff000000),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Roboto",
+                  fontStyle: FontStyle.normal,
+                  fontSize: 30.0),
+            ),
           ),
         ),
       ),

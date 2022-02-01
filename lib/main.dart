@@ -48,10 +48,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: CoffeeDetailsScreen(),
+      home: SavedDrinks(),
 
-      // CoffeeDetailsScreen , FavoriteDrinksScreen ,MakeYourCoffeScreen , MenuScreen
-      // MenuCard , SavedDrinks
+      //  , SavedDrinks
     );
   }
 }

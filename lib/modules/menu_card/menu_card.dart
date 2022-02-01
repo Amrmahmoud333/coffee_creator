@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,37 +14,33 @@ class MenuCard extends StatelessWidget {
       return MediaQuery.of(context).size.width * (n / 393);
     }
 
+    final _scaffoldKey = new GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: _scaffoldKey,
+      appBar: AppBar(
+        centerTitle: true,
+        title: AutoSizeText(
+          'Your coffee',
+          style: const TextStyle(
+              color: const Color(0xff000000),
+              fontWeight: FontWeight.w400,
+              fontFamily: "Roboto",
+              fontStyle: FontStyle.normal,
+              fontSize: 30.0),
+        ),
+        leading: IconButton(
+          icon: Icon(
+            Icons.menu,
+            size: width(40),
+          ),
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+        ),
+      ),
+      drawer: DrawerScreen(),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: height(36),
-              ),
-              Row(
-                children: [
-                  SizedBox(
-                    width: width(51),
-                  ),
-                  Icon(
-                    Icons.menu,
-                    size: height(46),
-                  ),
-                  SizedBox(
-                    width: width(35),
-                  ),
-                  AutoSizeText(
-                    'Your coffee',
-                    style: const TextStyle(
-                        color: const Color(0xff000000),
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Roboto",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 30.0),
-                  ),
-                ],
-              ),
               SizedBox(
                 height: height(32),
               ),

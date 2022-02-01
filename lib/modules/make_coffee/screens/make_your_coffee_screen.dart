@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/drawer/drawer.dart';
 import 'package:coffee_creator/modules/make_coffee/widget/container_choose.dart';
 import 'package:coffee_creator/modules/make_coffee/widget/container_text.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class MakeYourCoffeScreen extends StatefulWidget {
 
 class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
   int _value = 1;
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,37 +28,34 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
     return ScreenUtilInit(
       designSize: Size(393, 851),
       builder: () => Scaffold(
+        key: _scaffoldKey,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(77.h),
+          child: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.white,
+            automaticallyImplyLeading: false,
+            leading: IconButton(
+              icon: Icon(Icons.menu, size: 40.w),
+              onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+            ),
+            title: Center(
+              child: AutoSizeText("Make Your coffee",
+                  style: const TextStyle(
+                      color: const Color(0xff000000),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Roboto",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 25),
+                  textAlign: TextAlign.left),
+            ),
+          ),
+        ),
+        drawer: DrawerScreen(),
         backgroundColor: const Color(0xffffffff),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 34.w, vertical: 29.h),
-                child: Row(
-                  children: [
-                    Container(
-                      height: 46.h,
-                      width: 43.w,
-                      child: Icon(
-                        Icons.menu,
-                        size: 40.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 31.w,
-                    ),
-                    Text(
-                      'Make Your coffee',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Roboto",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 25.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               SizedBox(
                 height: 34.h,
               ),
