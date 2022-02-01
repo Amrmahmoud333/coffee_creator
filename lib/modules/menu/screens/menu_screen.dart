@@ -1,3 +1,4 @@
+import 'package:coffee_creator/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
@@ -136,11 +137,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 titles: titles,
                 images: images,
                 onPageChanged: (page) {
-<<<<<<< Updated upstream
-                  if (page! == 3.0){
-=======
-                  if (page! > 3.0) {
->>>>>>> Stashed changes
+                  if (page! == 3.0) {
                     setState(() {
                       _title = 'Hot Drinks';
                     });
