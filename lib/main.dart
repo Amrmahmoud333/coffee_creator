@@ -1,17 +1,11 @@
-import 'package:coffee_creator/modules/intro/intro_page_screen.dart';
-import 'package:coffee_creator/modules/coffee_details/coffee_details_screen.dart';
-import 'package:coffee_creator/modules/favorite_drinks/widgets/favorite_card.dart';
-import 'package:coffee_creator/modules/login/screens/login_screen.dart';
-import 'package:coffee_creator/modules/make_coffee/screens/make_your_coffee_screen.dart';
-import 'package:coffee_creator/modules/saved_drinks/screens/saved_drinks.dart';
-import 'package:coffee_creator/modules/welcome/screens/welcome_screen.dart';
-
+import 'package:coffee_creator/views/home/home_screen.dart';
+import 'package:coffee_creator/views/make_coffee/screens/make_your_coffee_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'modules/favorite_drinks/screens/favorite_drinks_screen.dart';
-import 'modules/menu/screens/menu_screen.dart';
-import 'modules/menu_card/menu_card.dart';
+import 'package:coffee_creator/views/welcome/welcome_screen.dart';
+
+import 'views/menu_item/menu_item.dart';
 
 void main() => runApp(MyApp());
 
@@ -48,7 +42,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SavedDrinks(),
+      home: MakeYourCoffeScreen(),
 
       //  , SavedDrinks
     );

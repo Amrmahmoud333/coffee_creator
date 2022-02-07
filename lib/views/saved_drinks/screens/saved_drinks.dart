@@ -1,23 +1,14 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:coffee_creator/drawer/drawer.dart';
-import 'package:coffee_creator/modules/favorite_drinks/widgets/favorite_card.dart';
+import 'package:coffee_creator/views/drawer/drawer.dart';
+import 'package:coffee_creator/views/saved_drinks/widget/drink_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class FavoriteDrinksScreen extends StatelessWidget {
+class SavedDrinks extends StatelessWidget {
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
-    double height(double n) {
-      return MediaQuery.of(context).size.height * (n / 851);
-    }
-
-    double width(double n) {
-      return MediaQuery.of(context).size.width * (n / 393);
-    }
-
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Color(0x29291f1f),
       statusBarBrightness: Brightness.dark,
@@ -30,32 +21,27 @@ class FavoriteDrinksScreen extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(77.h),
           child: AppBar(
-            elevation: 15,
-            backgroundColor: const Color(0xffb69d89),
-            automaticallyImplyLeading: false,
+            title: AutoSizeText(
+              "Saved Drinks",
+              style: const TextStyle(
+                  color: const Color(0xff000000),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Roboto",
+                  fontStyle: FontStyle.normal,
+                  fontSize: 27.0),
+              textAlign: TextAlign.left,
+            ),
             leading: IconButton(
               icon: Icon(Icons.menu, size: 40.w),
               onPressed: () => _scaffoldKey.currentState?.openDrawer(),
             ),
+            centerTitle: true,
             actions: [
-              Padding(
-                padding: EdgeInsets.only(right: width(27)),
-                child: IconButton(
-                  icon: Icon(Icons.search, size: 40.w),
-                  onPressed: () {},
-                ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.search, size: 40.w),
               ),
             ],
-            title: Center(
-              child: AutoSizeText("Favorite Drinks",
-                  style: const TextStyle(
-                      color: const Color(0xff000000),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Roboto",
-                      fontStyle: FontStyle.normal,
-                      fontSize: 27),
-                  textAlign: TextAlign.left),
-            ),
           ),
         ),
         drawer: DrawerScreen(),
@@ -69,11 +55,11 @@ class FavoriteDrinksScreen extends StatelessWidget {
                 SizedBox(
                   width: 47.w,
                 ),
-                FavoriteCard('assets/images/coffecard1.jpg'),
+                DrinkCard('assets/images/coffecard1.jpg'),
                 SizedBox(
                   width: 17.w,
                 ),
-                FavoriteCard('assets/images/coffecard2.jpg'),
+                DrinkCard('assets/images/coffecard2.jpg'),
               ],
             ),
             SizedBox(
@@ -84,11 +70,11 @@ class FavoriteDrinksScreen extends StatelessWidget {
                 SizedBox(
                   width: 47.w,
                 ),
-                FavoriteCard('assets/images/coffecard3.jpg'),
+                DrinkCard('assets/images/coffecard3.jpg'),
                 SizedBox(
                   width: 17.w,
                 ),
-                FavoriteCard('assets/images/coffecard4.jpg'),
+                DrinkCard('assets/images/coffecard4.jpg'),
               ],
             ),
           ],

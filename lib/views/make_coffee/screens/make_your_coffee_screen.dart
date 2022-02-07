@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:coffee_creator/drawer/drawer.dart';
-import 'package:coffee_creator/modules/make_coffee/widget/container_choose.dart';
-import 'package:coffee_creator/modules/make_coffee/widget/container_text.dart';
+import 'package:coffee_creator/views/drawer/drawer.dart';
+import 'package:coffee_creator/views/make_coffee/widget/container_choose.dart';
+import 'package:coffee_creator/views/make_coffee/widget/container_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
