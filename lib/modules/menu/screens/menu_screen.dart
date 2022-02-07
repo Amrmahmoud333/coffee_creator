@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
@@ -8,9 +10,18 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   String _title = 'Cold drinks';
+  double height(double n) {
+    return MediaQuery.of(context).size.height * (n / 851);
+  }
+
+  double width(double n) {
+    return MediaQuery.of(context).size.width * (n / 393);
+  }
 
   @override
   Widget build(BuildContext context) {
+    final _scaffoldKey = new GlobalKey<ScaffoldState>();
+
     final List<String> titles = [
       "Iced Latte",
       "Iced Coffee",
@@ -110,20 +121,24 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
         ),
       ),
-
     ];
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
-        title: Text(_title),
-        leading: Icon(Icons.menu),
+        title: AutoSizeText(_title),
+        leading: IconButton(
+          icon: Icon(Icons.menu, size: width(40)), // change this size and style
+          onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.search, size: width(40)),
           ),
         ],
       ),
+      drawer: DrawerScreen(),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -137,7 +152,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 titles: titles,
                 images: images,
                 onPageChanged: (page) {
-                  if (page! == 3.0){
+                  if (page! == 3.0) {
                     setState(() {
                       _title = 'Hot Drinks';
                     });

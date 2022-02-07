@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 
 import 'modules/favorite_drinks/screens/favorite_drinks_screen.dart';
 import 'modules/menu/screens/menu_screen.dart';
+import 'modules/menu_card/menu_card.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,9 +37,7 @@ class MyApp extends StatelessWidget {
           headline4: TextStyle(fontSize: 15, color: Colors.black),
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xffb59c88),
-          foregroundColor: Colors.black
-        ),
+            backgroundColor: Color(0xffb59c88), foregroundColor: Colors.black),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             primary: Color(0xffe6d6c7),
@@ -49,7 +48,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: MenuScreen(),
+      home: SavedDrinks(),
+
+      //  , SavedDrinks
     );
   }
 }

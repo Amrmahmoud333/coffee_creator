@@ -1,9 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/drawer/drawer.dart';
 import 'package:coffee_creator/modules/saved_drinks/widget/drink_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SavedDrinks extends StatelessWidget {
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -14,55 +17,34 @@ class SavedDrinks extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(393, 851),
       builder: () => Scaffold(
+        key: _scaffoldKey,
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(77.h),
           child: AppBar(
-            elevation: 15,
-            backgroundColor: const Color(0xffb69d89),
-            automaticallyImplyLeading: false,
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 43.w,
-                  height: 46.h,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.menu,
-                      size: 50.sp,
-                    ),
-                    color: Colors.black,
-                    onPressed: () {},
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(0, 40.h, 0, 16.h),
-                  child: Text("Saved Drinks",
-                      style: const TextStyle(
-                          color: const Color(0xff000000),
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Roboto",
-                          fontStyle: FontStyle.normal,
-                          fontSize: 27.0),
-                      textAlign: TextAlign.left),
-                ),
-                SizedBox(
-                  width: 43.w,
-                  height: 46.h,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.search,
-                      size: 50.sp,
-                    ),
-                    color: Colors.black,
-                    onPressed: () {},
-                  ),
-                ),
-              ],
+            title: AutoSizeText(
+              "Saved Drinks",
+              style: const TextStyle(
+                  color: const Color(0xff000000),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "Roboto",
+                  fontStyle: FontStyle.normal,
+                  fontSize: 27.0),
+              textAlign: TextAlign.left,
             ),
+            leading: IconButton(
+              icon: Icon(Icons.menu, size: 40.w),
+              onPressed: () => _scaffoldKey.currentState?.openDrawer(),
+            ),
+            centerTitle: true,
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.search, size: 40.w),
+              ),
+            ],
           ),
         ),
+        drawer: DrawerScreen(),
         body: Column(
           children: [
             SizedBox(
