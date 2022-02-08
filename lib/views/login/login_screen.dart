@@ -1,10 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:coffee_creator/views/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LoginScreen extends StatelessWidget {
+  static const routeName = '/login';
   @override
   Widget build(BuildContext context) {
     double height(double n) {
@@ -18,6 +19,7 @@ class LoginScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -116,7 +118,9 @@ class LoginScreen extends StatelessWidget {
             height: height(56), // 6
             width: width(180),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, HomeScreen.routeName);
+              },
               child: AutoSizeText(
                 'Log in',
                 style: TextStyle(
@@ -208,7 +212,7 @@ class LoginScreen extends StatelessWidget {
             height: height(53), // 6
             width: double.infinity,
             decoration: BoxDecoration(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.secondary,
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(height(15)), topLeft: Radius.circular(height(15))),
             ),

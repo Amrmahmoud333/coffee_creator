@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/views/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -11,6 +12,7 @@ class WelcomeScreen extends StatelessWidget {
     double width(double n) {
       return MediaQuery.of(context).size.width * (n / 393);
     }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -40,7 +42,9 @@ class WelcomeScreen extends StatelessWidget {
               height: height(54),
               width: width(213),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, LoginScreen.routeName);
+                },
                 child: AutoSizeText(
                   'Log in',
                   style: TextStyle(

@@ -1,15 +1,11 @@
-import 'package:coffee_creator/views/home/home_screen.dart';
-import 'package:coffee_creator/views/make_coffee/screens/make_your_coffee_screen.dart';
+import 'package:coffee_creator/views/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:coffee_creator/views/welcome/welcome_screen.dart';
-
-import 'views/menu_item/menu_item.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final AppRouter appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -21,17 +17,14 @@ class MyApp extends StatelessWidget {
       title: 'Coffee Creator',
       theme: ThemeData(
         primaryColor: Color(0xffb59c88),
-        accentColor: Color(0xffe6d6c7),
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(secondary: Color(0xffe6d6c7)),
         scaffoldBackgroundColor: Color(0xffb59c88),
         fontFamily: 'Roboto',
-        textTheme: TextTheme(
-          headline1: TextStyle(fontSize: 28, color: Colors.black),
-          headline2: TextStyle(fontSize: 22, color: Colors.black),
-          headline3: TextStyle(fontSize: 16, color: Colors.black),
-          headline4: TextStyle(fontSize: 15, color: Colors.black),
-        ),
         appBarTheme: AppBarTheme(
-            backgroundColor: Color(0xffb59c88), foregroundColor: Colors.black),
+          backgroundColor: Color(0xffb59c88),
+          foregroundColor: Colors.black,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             primary: Color(0xffe6d6c7),
@@ -42,8 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: MakeYourCoffeScreen(),
-
+      onGenerateRoute: appRouter.onGenerateRoute,
       //  , SavedDrinks
     );
   }
