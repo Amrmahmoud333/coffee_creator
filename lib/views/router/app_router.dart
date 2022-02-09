@@ -9,7 +9,7 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => MakeYourCoffeScreen());
+        return MaterialPageRoute(builder: (_) => WelcomeScreen());
       case LoginScreen.routeName:
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case SignUpScreen.routeName:

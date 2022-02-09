@@ -18,10 +18,37 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
   int _valueOrgin = 1;
   int _valueSugar = 1;
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  // manage Cup Size
   String _cupSize = '';
   bool _isCupSizeM = false;
   bool _isCupSizeS = false;
   bool _isCupSizeL = false;
+  // manage coffee
+  String _Coffee = '';
+  bool _isCoffeCold = false;
+  bool _isCoffeHot = false;
+  // manage roast
+  String _Roast = '';
+  bool _isRoastLight = false;
+  bool _isRoastMediam = false;
+  bool _isRoastDark = false;
+  // manage sugar type
+  String _sugarType = '';
+  bool _isSugarTypeNormal = false;
+  bool _isSugarTypeDiet = false;
+  // manage flavor
+  String _flavor = '';
+  bool _isFlavorCaramel = false;
+  bool _isFlavorVanilia = false;
+  bool _isFlavorPumpkinSpice = false;
+  bool _isFlavorMocha = false;
+  bool _isFlavorHazelnut = false;
+  // manage extra
+  String _extra = '';
+  bool _isExtraWhippingCream = false;
+  bool _isExtraCaramelSauce = false;
+  bool _isExtraChocolateSauce = false;
+  bool _isExtraNuts = false;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -136,11 +163,29 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                     width: 33.w,
                   ),
                   ContainerText('Coffee', 122.w, 33.h, 25.sp),
-                  ContainerChoose('Hot', 95.w, 36.h, 18.sp, true),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _Coffee = 'Hot';
+                          _isCoffeHot = !_isCoffeHot;
+                          _isCoffeCold = false;
+                        });
+                      },
+                      child: ContainerChoose(
+                          'Hot', 95.w, 36.h, 18.sp, _isCoffeHot)),
                   SizedBox(
                     width: 27.w,
                   ),
-                  ContainerChoose('Cold', 95.w, 36.h, 18.sp, false),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _Coffee = 'Cold';
+                          _isCoffeCold = !_isCoffeCold;
+                          _isCoffeHot = false;
+                        });
+                      },
+                      child: ContainerChoose(
+                          'Cold', 95.w, 36.h, 18.sp, _isCoffeCold)),
                 ],
               ),
               SizedBox(
@@ -262,15 +307,45 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                     width: 33.w,
                   ),
                   ContainerText('Roast', 100.w, 33.h, 25.sp),
-                  ContainerChoose('Light', 73.w, 36.h, 18.sp, true),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _Roast = 'Light';
+                          _isRoastLight = !_isRoastLight;
+                          _isRoastDark = false;
+                          _isRoastMediam = false;
+                        });
+                      },
+                      child: ContainerChoose(
+                          'Light', 73.w, 36.h, 18.sp, _isRoastLight)),
                   SizedBox(
                     width: 8.w,
                   ),
-                  ContainerChoose('Mediam', 73.w, 36.h, 18.sp, false),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _Roast = 'Mediam';
+                          _isRoastMediam = !_isRoastMediam;
+                          _isRoastLight = false;
+                          _isRoastDark = false;
+                        });
+                      },
+                      child: ContainerChoose(
+                          'Mediam', 73.w, 36.h, 18.sp, _isRoastMediam)),
                   SizedBox(
                     width: 8.w,
                   ),
-                  ContainerChoose('Dark', 73.w, 36.h, 18.sp, false),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _Roast = 'Dark';
+                          _isRoastDark = !_isRoastDark;
+                          _isRoastLight = false;
+                          _isRoastMediam = false;
+                        });
+                      },
+                      child: ContainerChoose(
+                          'Dark', 73.w, 36.h, 18.sp, _isRoastDark)),
                   SizedBox(
                     width: 25.w,
                   ),
@@ -288,11 +363,29 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                   SizedBox(
                     width: 15.w,
                   ),
-                  ContainerChoose('Normal', 90.w, 36.h, 16.sp, true),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _sugarType = 'Normal';
+                          _isSugarTypeNormal = !_isSugarTypeNormal;
+                          _isSugarTypeDiet = false;
+                        });
+                      },
+                      child: ContainerChoose(
+                          'Normal', 90.w, 36.h, 16.sp, _isSugarTypeNormal)),
                   SizedBox(
                     width: 9.w,
                   ),
-                  ContainerChoose('Diet', 90.w, 36.h, 16.sp, false),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _sugarType = 'Diet';
+                          _isSugarTypeDiet = !_isSugarTypeDiet;
+                          _isSugarTypeNormal = false;
+                        });
+                      },
+                      child: ContainerChoose(
+                          'Diet', 90.w, 36.h, 16.sp, _isSugarTypeDiet)),
                   SizedBox(
                     width: 25.w,
                   ),
@@ -424,11 +517,36 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                         width: 33.w,
                       ),
                       ContainerText('Flavor', 86.w, 33.h, 25.sp),
-                      ContainerChoose('Caramel', 95.w, 36.h, 18.sp, true),
+                      InkWell(
+                          onTap: () {
+                            setState(() {
+                              _flavor = 'Caramel';
+                              _isFlavorCaramel = !_isFlavorCaramel;
+                              _isFlavorHazelnut = false;
+                              _isFlavorMocha = false;
+                              _isFlavorPumpkinSpice = false;
+                              _isFlavorVanilia = false;
+                            });
+                          },
+                          child: ContainerChoose(
+                              'Caramel', 95.w, 36.h, 18.sp, _isFlavorCaramel)),
                       SizedBox(
                         width: 27.w,
                       ),
-                      ContainerChoose('Vanilia', 95.w, 36.h, 18.sp, false),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _flavor = 'Vanilia';
+                            _isFlavorVanilia = !_isFlavorVanilia;
+                            _isFlavorHazelnut = false;
+                            _isFlavorMocha = false;
+                            _isFlavorPumpkinSpice = false;
+                            _isFlavorCaramel = false;
+                          });
+                        },
+                        child: ContainerChoose(
+                            'Vanilia', 95.w, 36.h, 18.sp, _isFlavorVanilia),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -439,16 +557,54 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                       SizedBox(
                         width: 20.w,
                       ),
-                      ContainerChoose(
-                          'Pumpkin Spice', 110.w, 36.h, 16.sp, false),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _flavor = 'Pumpkin Spice';
+                            _isFlavorPumpkinSpice = !_isFlavorPumpkinSpice;
+                            _isFlavorHazelnut = false;
+                            _isFlavorMocha = false;
+                            _isFlavorVanilia = false;
+                            _isFlavorCaramel = false;
+                          });
+                        },
+                        child: ContainerChoose('Pumpkin Spice', 110.w, 36.h,
+                            16.sp, _isFlavorPumpkinSpice),
+                      ),
                       SizedBox(
                         width: 27.w,
                       ),
-                      ContainerChoose('Mocha', 95.w, 36.h, 18.sp, false),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _flavor = 'Mocha';
+                            _isFlavorMocha = !_isFlavorMocha;
+                            _isFlavorHazelnut = false;
+                            _isFlavorPumpkinSpice = false;
+                            _isFlavorVanilia = false;
+                            _isFlavorCaramel = false;
+                          });
+                        },
+                        child: ContainerChoose(
+                            'Mocha', 95.w, 36.h, 18.sp, _isFlavorMocha),
+                      ),
                       SizedBox(
                         width: 27.w,
                       ),
-                      ContainerChoose('Hazelnut', 95.w, 36.h, 18.sp, false),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _flavor = 'Hazelnut';
+                            _isFlavorHazelnut = !_isFlavorHazelnut;
+                            _isFlavorMocha = false;
+                            _isFlavorPumpkinSpice = false;
+                            _isFlavorVanilia = false;
+                            _isFlavorCaramel = false;
+                          });
+                        },
+                        child: ContainerChoose(
+                            'Hazelnut', 95.w, 36.h, 18.sp, _isFlavorHazelnut),
+                      ),
                     ],
                   ),
                 ],
@@ -464,13 +620,35 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                         width: 33.w,
                       ),
                       ContainerText('Extra', 86.w, 33.h, 25.sp),
-                      ContainerChoose(
-                          'Whipping cream', 115.w, 36.h, 16.sp, true),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _extra = 'Whipping cream';
+                            _isExtraWhippingCream = !_isExtraWhippingCream;
+                            _isExtraCaramelSauce = false;
+                            _isExtraChocolateSauce = false;
+                            _isExtraNuts = false;
+                          });
+                        },
+                        child: ContainerChoose('Whipping cream', 115.w, 36.h,
+                            16.sp, _isExtraWhippingCream),
+                      ),
                       SizedBox(
                         width: 27.w,
                       ),
-                      ContainerChoose(
-                          'Caramel sauce', 115.w, 36.h, 16.sp, false),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _extra = 'Caramel sauce';
+                            _isExtraCaramelSauce = !_isExtraCaramelSauce;
+                            _isExtraWhippingCream = false;
+                            _isExtraChocolateSauce = false;
+                            _isExtraNuts = false;
+                          });
+                        },
+                        child: ContainerChoose('Caramel sauce', 115.w, 36.h,
+                            16.sp, _isExtraCaramelSauce),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -481,12 +659,34 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                       SizedBox(
                         width: 120.w,
                       ),
-                      ContainerChoose(
-                          'Chocolate sauce', 115.w, 36.h, 16.sp, false),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            _extra = 'Chocolate sauce';
+                            _isExtraChocolateSauce = !_isExtraChocolateSauce;
+                            _isExtraWhippingCream = false;
+                            _isExtraCaramelSauce = false;
+                            _isExtraNuts = false;
+                          });
+                        },
+                        child: ContainerChoose('Chocolate sauce', 115.w, 36.h,
+                            16.sp, _isExtraChocolateSauce),
+                      ),
                       SizedBox(
                         width: 27.w,
                       ),
-                      ContainerChoose('Nuts', 115.w, 36.h, 18.sp, false),
+                      InkWell(
+                          onTap: () {
+                            setState(() {
+                              _extra = 'Nuts';
+                              _isExtraNuts = !_isExtraNuts;
+                              _isExtraWhippingCream = false;
+                              _isExtraCaramelSauce = false;
+                              _isExtraChocolateSauce = false;
+                            });
+                          },
+                          child: ContainerChoose(
+                              'Nuts', 115.w, 36.h, 18.sp, _isExtraNuts)),
                     ],
                   ),
                 ],
