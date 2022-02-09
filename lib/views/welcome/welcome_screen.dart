@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:coffee_creator/views/login/login_screen.dart';
+import 'package:coffee_creator/views/sign_up/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -60,7 +61,9 @@ class WelcomeScreen extends StatelessWidget {
               height: height(54),
               width: width(213),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, SignUpScreen.routeName);
+                },
                 child: AutoSizeText(
                   'Sign up',
                   style: TextStyle(

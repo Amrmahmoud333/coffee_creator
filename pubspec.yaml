@@ -35,6 +35,8 @@ dependencies:
   flutter_screenutil: ^5.0.1
   vertical_card_pager: ^1.5.0
   list_tile_switch: ^1.0.0
+  image_picker: ^0.8.4+7
+
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:coffee_creator/views/home/home_screen.dart';
+import 'package:coffee_creator/views/sign_up/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,7 +10,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height(double n) {
-      return MediaQuery.of(context).size.height * (n / 851);
+      return MediaQuery.of(context).size.height  * (n / 851);
     }
 
     double width(double n) {
@@ -226,7 +227,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, SignUpScreen.routeName),
                   child: AutoSizeText(
                     'Sign up.',
                     style: TextStyle(
