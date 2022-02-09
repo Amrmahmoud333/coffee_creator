@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 
 class MakeYourCoffeScreen extends StatefulWidget {
   const MakeYourCoffeScreen({Key? key}) : super(key: key);
+  static const routeName = '/make_your_coffee';
 
   @override
   State<MakeYourCoffeScreen> createState() => _MakeYourCoffeScreenState();

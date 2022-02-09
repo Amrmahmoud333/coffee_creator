@@ -1,3 +1,7 @@
+import 'package:coffee_creator/views/favorite_drinks/screens/favorite_drinks_screen.dart';
+import 'package:coffee_creator/views/make_coffee/screens/make_your_coffee_screen.dart';
+import 'package:coffee_creator/views/menu/screens/menu_screen.dart';
+import 'package:coffee_creator/views/saved_drinks/screens/saved_drinks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,7 +9,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 class HomeScreen extends StatelessWidget {
   static const routeName = '/home';
-  
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -75,7 +79,10 @@ class HomeScreen extends StatelessWidget {
                   padding:
                       EdgeInsets.fromLTRB(width * 0.07, height * 0.12, 0, 0),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, MakeYourCoffeScreen.routeName);
+                    },
                     child: Container(
                       width: width * 0.37,
                       height: height * 0.25,
@@ -117,26 +124,32 @@ class HomeScreen extends StatelessWidget {
                         width: width * 0.37,
                       ),
                     ),
-                    Container(
-                      width: width * 0.37,
-                      height: height * 0.18,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(23)),
-                          border: Border.all(
-                              color: const Color(0xffe6d6c7), width: 5)),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: width * 0.09, vertical: height * 0.06),
-                        child: SizedBox(
-                          width: width * 0.25,
-                          height: height * 0.13,
-                          child: AutoSizeText(
-                            'Menu',
-                            style: TextStyle(
-                              fontSize: 28,
-                              fontWeight: FontWeight.w400,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, MenuScreen.routeName);
+                      },
+                      child: Container(
+                        width: width * 0.37,
+                        height: height * 0.18,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(23)),
+                            border: Border.all(
+                                color: const Color(0xffe6d6c7), width: 5)),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: width * 0.09,
+                              vertical: height * 0.06),
+                          child: SizedBox(
+                            width: width * 0.25,
+                            height: height * 0.13,
+                            child: AutoSizeText(
+                              'Menu',
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
-                            textAlign: TextAlign.left,
                           ),
                         ),
                       ),
@@ -169,29 +182,33 @@ class HomeScreen extends StatelessWidget {
                       PositionedDirectional(
                         start: width * 0.076,
                         top: height * 0.121,
-                        child: Container(
-                          width: width * 0.30,
-                          height: height * 0.18,
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(23)),
-                              border: Border.all(
-                                  color: const Color(0xffe6d6c7), width: 5)),
-                          child: Padding(
-                            //TODO
-                            padding: EdgeInsets.symmetric(
-                                horizontal: width * 0.05,
-                                vertical: height * 0.05),
-                            child: SizedBox(
-                              width: width * 0.21,
-                              height: height * 0.8,
-                              child: AutoSizeText(
-                                'Save Drinks',
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w400,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, SavedDrinks.routeName);
+                          },
+                          child: Container(
+                            width: width * 0.30,
+                            height: height * 0.18,
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(23)),
+                                border: Border.all(
+                                    color: const Color(0xffe6d6c7), width: 5)),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: width * 0.05,
+                                  vertical: height * 0.05),
+                              child: SizedBox(
+                                width: width * 0.21,
+                                height: height * 0.8,
+                                child: AutoSizeText(
+                                  'Save Drinks',
+                                  style: TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
-                                textAlign: TextAlign.left,
                               ),
                             ),
                           ),
@@ -205,28 +222,34 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, height * 0.05, 0, 0),
-                  child: Container(
-                    width: width * 0.35,
-                    height: height * 0.25,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(23),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(
+                          context, FavoriteDrinksScreen.routeName);
+                    },
+                    child: Container(
+                      width: width * 0.35,
+                      height: height * 0.25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(23),
+                        ),
+                        color: const Color(0xffe6d6c7),
                       ),
-                      color: const Color(0xffe6d6c7),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.04, vertical: height * 0.08),
-                      child: SizedBox(
-                        width: width * 0.31,
-                        height: height * 0.08,
-                        child: AutoSizeText(
-                          "Favourite Drinks",
-                          style: TextStyle(
-                            fontSize: 28,
-                            fontWeight: FontWeight.w400,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: width * 0.04, vertical: height * 0.08),
+                        child: SizedBox(
+                          width: width * 0.31,
+                          height: height * 0.08,
+                          child: AutoSizeText(
+                            "Favourite Drinks",
+                            style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.left,
                         ),
                       ),
                     ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
 class MenuScreen extends StatefulWidget {
+  static const routeName = '/menu';
   @override
   State<MenuScreen> createState() => _MenuScreenState();
 }

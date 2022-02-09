@@ -1,4 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/views/favorite_drinks/screens/favorite_drinks_screen.dart';
+import 'package:coffee_creator/views/menu/screens/menu_screen.dart';
+import 'package:coffee_creator/views/saved_drinks/screens/saved_drinks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -94,7 +97,9 @@ class DrawerScreen extends StatelessWidget {
                   fontSize: 23,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, MenuScreen.routeName);
+              },
             ),
             ListTile(
               leading: Icon(
@@ -110,7 +115,9 @@ class DrawerScreen extends StatelessWidget {
                   fontSize: 23,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, SavedDrinks.routeName);
+              },
             ),
             ListTile(
               leading: SvgPicture.asset('assets/images/Heart.svg',
@@ -126,7 +133,9 @@ class DrawerScreen extends StatelessWidget {
                   fontSize: 23,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, FavoriteDrinksScreen.routeName);
+              },
             ),
             ListTile(
               leading: Icon(
@@ -196,7 +205,9 @@ class DrawerScreen extends StatelessWidget {
                     fontSize: 23,
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/');
+                },
               ),
             ),
           ],

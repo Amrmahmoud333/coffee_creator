@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SavedDrinks extends StatelessWidget {
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  static const routeName = '/saved_drinks';
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

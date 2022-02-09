@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavoriteDrinksScreen extends StatelessWidget {
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  static const routeName = '/favorite_drinks';
   @override
   Widget build(BuildContext context) {
     double height(double n) {
