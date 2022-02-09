@@ -1,5 +1,6 @@
 import 'package:coffee_creator/views/home/home_screen.dart';
 import 'package:coffee_creator/views/login/login_screen.dart';
+import 'package:coffee_creator/views/make_coffee/screens/make_your_coffee_screen.dart';
 import 'package:coffee_creator/views/sign_up/screens/sign_up_screen.dart';
 import 'package:coffee_creator/views/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => WelcomeScreen());
+        return MaterialPageRoute(builder: (_) => MakeYourCoffeScreen());
       case LoginScreen.routeName:
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case SignUpScreen.routeName:

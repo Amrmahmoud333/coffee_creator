@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class ContainerChoose extends StatelessWidget {
@@ -20,7 +21,7 @@ class ContainerChoose extends StatelessWidget {
             : Colors.white, //TODO change with white
       ),
       child: Center(
-        child: Text(
+        child: AutoSizeText(
           text,
           style: TextStyle(
             fontSize: fontSize,

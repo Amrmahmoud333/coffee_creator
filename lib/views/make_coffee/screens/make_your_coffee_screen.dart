@@ -15,9 +15,13 @@ class MakeYourCoffeScreen extends StatefulWidget {
 }
 
 class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
-  int _value = 1;
+  int _valueOrgin = 1;
+  int _valueSugar = 1;
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
-
+  String _cupSize = '';
+  bool _isCupSizeM = false;
+  bool _isCupSizeS = false;
+  bool _isCupSizeL = false;
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -79,15 +83,45 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                   SizedBox(
                     width: 5.w,
                   ),
-                  ContainerChoose('S', 63.w, 36.h, 25.sp, true),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _cupSize = 'S';
+                          _isCupSizeS = !_isCupSizeS;
+                          _isCupSizeM = false;
+                          _isCupSizeL = false;
+                        });
+                      },
+                      child:
+                          ContainerChoose('S', 63.w, 36.h, 25.sp, _isCupSizeS)),
                   SizedBox(
                     width: 14.w,
                   ),
-                  ContainerChoose('M', 63.w, 36.h, 25.sp, false),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _cupSize = 'M';
+                          _isCupSizeM = !_isCupSizeM;
+                          _isCupSizeL = false;
+                          _isCupSizeS = false;
+                        });
+                      },
+                      child:
+                          ContainerChoose('M', 63.w, 36.h, 25.sp, _isCupSizeM)),
                   SizedBox(
                     width: 14.w,
                   ),
-                  ContainerChoose('L', 63.w, 36.h, 25.sp, true),
+                  InkWell(
+                      onTap: () {
+                        setState(() {
+                          _cupSize = 'L';
+                          _isCupSizeL = !_isCupSizeL;
+                          _isCupSizeM = false;
+                          _isCupSizeS = false;
+                        });
+                      },
+                      child:
+                          ContainerChoose('L', 63.w, 36.h, 25.sp, _isCupSizeL)),
                   SizedBox(
                     width: 25.w,
                   ),
@@ -130,7 +164,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                             color: const Color(0xffe6d6c7), width: 3),
                         color: const Color(0xffffffff)),
                     child: DropdownButton(
-                      value: _value,
+                      value: _valueOrgin,
                       icon: Icon(Icons.arrow_drop_down),
                       underline: SizedBox(),
                       items: [
@@ -212,7 +246,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                       ],
                       onChanged: (dynamic v) {
                         setState(() {
-                          _value = v;
+                          _valueOrgin = v;
                         });
                       },
                     ),
@@ -295,7 +329,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                             color: const Color(0xffe6d6c7), width: 3),
                         color: const Color(0xffffffff)),
                     child: DropdownButton(
-                      value: _value,
+                      value: _valueSugar,
                       icon: Icon(Icons.arrow_drop_down),
                       underline: SizedBox(),
                       items: [
@@ -372,7 +406,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                       ],
                       onChanged: (dynamic v) {
                         setState(() {
-                          _value = v;
+                          _valueSugar = v;
                         });
                       },
                     ),
