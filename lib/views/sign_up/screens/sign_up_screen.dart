@@ -207,7 +207,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ],
             ),
-             Spacer(),
+            Spacer(),
             Container(
               height: height(53), // 6
               width: double.infinity,

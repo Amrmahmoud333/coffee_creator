@@ -44,16 +44,16 @@ class _ImageWidgetState extends State<ImageWidget> {
           ? setImageBuilder(
               Image.file(
                 this.image!,
-                width: width(169),
-                height: width(169),
+                width: height(169),
+                height: height(169),
                 fit: BoxFit.fill,
               ),
             )
           : setImageBuilder(
               Image.asset(
                 'assets/images/profile.png',
-                width: width(169),
-                height: width(169),
+                width: height(169),
+                height: height(169),
                 fit: BoxFit.fill,
               ),
             ),
@@ -69,7 +69,7 @@ class _ImageWidgetState extends State<ImageWidget> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Container(
-                width: width(40),
+                width: 40,
                 color: Color(0xffb59c88).withOpacity(0.6),
                 child: Icon(Icons.add_a_photo_outlined,color: Colors.grey.shade700,),
               ),
