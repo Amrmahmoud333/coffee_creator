@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double height(double n) {
-      return MediaQuery.of(context).size.height * (n / 851);
+     double height(double n) {
+      return (MediaQuery.of(context).size.height -
+              MediaQuery.of(context).padding.top) *
+          (n / 851);
     }
 
     double width(double n) {

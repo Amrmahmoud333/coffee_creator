@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:coffee_creator/views/drawer/drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CoffeeDetailsScreen extends StatelessWidget {
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
