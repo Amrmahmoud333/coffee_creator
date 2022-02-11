@@ -3,10 +3,12 @@ import 'package:coffee_creator/views/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'data/data_providers/dio_helper.dart';
 
-void main() async{
+void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   runApp(MyApp());

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+
 class SignUpScreen extends StatelessWidget {
   static const routeName = '/signup';
   final TextEditingController emailController = TextEditingController();
