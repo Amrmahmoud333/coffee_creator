@@ -1,12 +1,25 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/providers/auth_provider/auth_provider.dart';
 import 'package:coffee_creator/views/home/home_screen.dart';
 import 'package:coffee_creator/views/sign_up/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController paswwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  var _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     double height(double n) {
@@ -22,6 +35,43 @@ class LoginScreen extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
+    void _showErrorDialog(String message) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('An Error Occurred!'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Okay'),
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+            )
+          ],
+        ),
+      );
+    }
+
+    Future<void> _submit() async {
+      if (!_formKey.currentState!.validate()) {
+        return;
+      }
+      _formKey.currentState!.save();
+      setState(() {
+        _isLoading = true;
+      });
+      var res = await Provider.of<AuthProvider>(context,listen: false)
+          .login(emailController.text, paswwordController.text);
+      if (res == 'succeeded') {
+          Navigator.pushNamed(context, HomeScreen.routeName);
+      } else {
+        _showErrorDialog(res);
+      }
+      setState(() {
+        _isLoading = false;
+      });
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -65,6 +115,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               Form(
+                key: _formKey,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: width(40)),
                   child: Column(
@@ -81,6 +132,13 @@ class LoginScreen extends StatelessWidget {
                             prefixIcon: Icon(Icons.email),
                             border: OutlineInputBorder(),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty || !value.contains('@')) {
+                              return 'Invalid email!';
+                            }
+                            return null;
+                          },
+                          controller: emailController,
                         ),
                       ),
                       SizedBox(
@@ -94,6 +152,13 @@ class LoginScreen extends StatelessWidget {
                             prefixIcon: Icon(Icons.password),
                             border: OutlineInputBorder(),
                           ),
+                          obscureText: true,
+                          controller: paswwordController,
+                          validator: (value) {
+                            if (value!.isEmpty || value.length < 5) {
+                              return 'Password is too short!';
+                            }
+                          },
                         ),
                       ),
                       SizedBox(
@@ -124,8 +189,8 @@ class LoginScreen extends StatelessWidget {
                 height: height(56), // 6
                 width: width(180),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, HomeScreen.routeName);
+                  onPressed: () async {
+                    _submit();
                   },
                   child: AutoSizeText(
                     'Log in',
@@ -172,7 +237,8 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            child: SvgPicture.asset('assets/images/Facebook.svg'),
+                            child:
+                                SvgPicture.asset('assets/images/Facebook.svg'),
                             width: width(20),
                             height: height(30),
                           ),
@@ -220,7 +286,8 @@ class LoginScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(height(15)), topLeft: Radius.circular(height(15))),
+                      topRight: Radius.circular(height(15)),
+                      topLeft: Radius.circular(height(15))),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -232,7 +299,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: () => Navigator.pushNamed(context, SignUpScreen.routeName),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, SignUpScreen.routeName),
                       child: AutoSizeText(
                         'Sign up.',
                         style: TextStyle(

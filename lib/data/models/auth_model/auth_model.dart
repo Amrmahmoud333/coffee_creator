@@ -1,15 +1,15 @@
-class SignUpResponseModel {
+class AuthResponseModel {
   String? token;
   DateTime? expiryDate;
   String? userID;
 
-  SignUpResponseModel({
+  AuthResponseModel({
     this.token,
     this.expiryDate,
     this.userID,
   });
 
-  SignUpResponseModel.fromJson(Map<String, dynamic> json) {
+  AuthResponseModel.fromJson(Map<String, dynamic> json) {
     token = json['idToken'];
     expiryDate =
         DateTime.now().add(Duration(seconds: int.parse(json['expiresIn'])));
@@ -19,15 +19,26 @@ class SignUpResponseModel {
 
 class UserData {
   String? id;
-  String? name, email, phone, image;
-  String? token;
+  String? fname;
+  String? lname;
+  String? email;
+  String? phone;
+  String? image;
+  UserData({
+    this.id,
+    this.fname,
+    this.lname,
+    this.email,
+    this.phone,
+    this.image,
+  });
 
   UserData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
+    fname = json['fname'];
+    lname = json['lName'];
     email = json['email'];
     phone = json['phone'];
     image = json['image'];
-    token = json['token'];
   }
 }

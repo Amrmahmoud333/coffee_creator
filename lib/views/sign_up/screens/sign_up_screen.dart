@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/data/models/auth_model/auth_model.dart';
 import 'package:coffee_creator/providers/auth_provider/auth_provider.dart';
 import 'package:coffee_creator/views/login/login_screen.dart';
 import 'package:coffee_creator/views/sign_up/widgets/image_widget.dart';
@@ -7,15 +8,20 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-
 class SignUpScreen extends StatelessWidget {
   static const routeName = '/signup';
+  final TextEditingController fnameController = TextEditingController();
+  final TextEditingController lnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController paswwordController = TextEditingController();
+  final TextEditingController mobileNumaberController = TextEditingController();
+  late UserData userData;
   @override
   Widget build(BuildContext context) {
     double height(double n) {
-      return (MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top) * (n / 851);
+      return (MediaQuery.of(context).size.height -
+              MediaQuery.of(context).padding.top) *
+          (n / 851);
     }
 
     double width(double n) {
@@ -30,7 +36,8 @@ class SignUpScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top,
+            height: MediaQuery.of(context).size.height -
+                MediaQuery.of(context).padding.top,
             child: Column(
               children: [
                 ImageWidget(),
@@ -53,6 +60,7 @@ class SignUpScreen extends StatelessWidget {
                                     labelText: 'First name',
                                     border: OutlineInputBorder(),
                                   ),
+                                  controller: fnameController,
                                 ),
                               ),
                             ),
@@ -67,6 +75,7 @@ class SignUpScreen extends StatelessWidget {
                                     labelText: 'Last name',
                                     border: OutlineInputBorder(),
                                   ),
+                                  controller: lnameController,
                                 ),
                               ),
                             ),
@@ -111,6 +120,7 @@ class SignUpScreen extends StatelessWidget {
                               prefixIcon: Icon(Icons.phone_android),
                               border: OutlineInputBorder(),
                             ),
+                            controller: mobileNumaberController,
                           ),
                         ),
                         SizedBox(
@@ -121,10 +131,21 @@ class SignUpScreen extends StatelessWidget {
                             height: height(56), // 6
                             width: width(180),
                             child: ElevatedButton(
-                              onPressed: () async{
+                              onPressed: () async {
                                 //Navigator.pushNamed(context, HomeScreen.routeName);
-                                await Provider.of<AuthProvider>(context,listen: false)
-                                    .signUp(emailController.text, emailController.text);
+                                userData = UserData(
+                                  fname: fnameController.text,
+                                  lname: lnameController.text,
+                                  email: emailController.text,
+                                  phone: mobileNumaberController.text
+                                );
+                                await Provider.of<AuthProvider>(context,
+                                        listen: false)
+                                    .signUp(emailController.text,
+                                        paswwordController.text);
+                                await Provider.of<AuthProvider>(context,
+                                        listen: false)
+                                    .setUserData(userData);
                               },
                               child: AutoSizeText(
                                 'Sign up',
@@ -176,7 +197,8 @@ class SignUpScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              child: SvgPicture.asset('assets/images/Facebook.svg'),
+                              child: SvgPicture.asset(
+                                  'assets/images/Facebook.svg'),
                               width: width(20),
                               height: height(30),
                             ),
@@ -185,7 +207,8 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             AutoSizeText(
                               'Facebook',
-                              style: TextStyle(fontSize: 18, color: Colors.black),
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black),
                             ),
                           ],
                         ),
@@ -200,7 +223,8 @@ class SignUpScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              child: SvgPicture.asset('assets/images/Google.svg'),
+                              child:
+                                  SvgPicture.asset('assets/images/Google.svg'),
                               width: width(20),
                               height: height(30),
                             ),
@@ -209,7 +233,8 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             AutoSizeText(
                               'Google',
-                              style: TextStyle(fontSize: 18, color: Colors.black),
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.black),
                             ),
                           ],
                         ),
