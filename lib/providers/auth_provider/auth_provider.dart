@@ -10,7 +10,7 @@ class AuthProvider with ChangeNotifier {
   Future<void> signUp(String email, String password) async {
     try {
       await _authRepo.signUpRepo(email, password);
-      print(_authRepo.authResponseModel.token);
+      print(AuthRepo.authResponseModel.token);
     } catch (error) {
       print(error.toString());
       throw error;
@@ -21,8 +21,8 @@ class AuthProvider with ChangeNotifier {
     try {
       await _authRepo.setUserDataRepo(
           userData,
-          _authRepo.authResponseModel.userID!,
-          _authRepo.authResponseModel.token!);
+          AuthRepo.authResponseModel.userID!,
+          AuthRepo.authResponseModel.token!);
     } catch (erorr) {
       print(erorr.toString());
       throw erorr;
@@ -34,7 +34,7 @@ class AuthProvider with ChangeNotifier {
     try {
       await _authRepo.loginRepo(email, password);
       errorMessage = 'succeeded';
-      print(_authRepo.authResponseModel.token);
+      //  print(_authRepo.authResponseModel.token);
     } on DioError catch (error) {
       if (error.message.toString().contains('EMAIL_EXISTS')) {
         errorMessage = 'This email address is already in use.';
@@ -46,9 +46,9 @@ class AuthProvider with ChangeNotifier {
         errorMessage = 'Could not find a user with that email.';
       } else if (error.message.toString().contains('INVALID_PASSWORD')) {
         errorMessage = 'Invalid password.';
-      }
-      else errorMessage = 'Could not find a user with that email.';
-    } 
+      } else
+        errorMessage = 'Could not find a user with that email.';
+    }
     return errorMessage;
   }
 }
