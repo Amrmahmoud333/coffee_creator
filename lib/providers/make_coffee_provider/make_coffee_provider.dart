@@ -7,10 +7,9 @@ class MakeCoffeeProvider extends ChangeNotifier {
   MakeCoffeeAPI makeCoffeeAPI = MakeCoffeeAPI();
   String token = AuthRepo.authResponseModel.token.toString();
   String userId = AuthRepo.authResponseModel.userID.toString();
-  Future<void> makeCoffee(
-      {String? userId, MakeCoffeeModel? makeCoffeeModel}) async {
+  Future<void> makeCoffee({MakeCoffeeModel? makeCoffeeModel}) async {
     try {
-      await makeCoffeeAPI.postCoffeeData(userId!, token, makeCoffeeModel!);
+      await makeCoffeeAPI.postCoffeeData(userId, token, makeCoffeeModel!);
     } catch (e) {
       print(e.toString());
     }

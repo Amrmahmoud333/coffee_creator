@@ -21,6 +21,14 @@ class MakeYourCoffeScreen extends StatefulWidget {
 class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
   int _valueOrgin = 1;
   int _valueSugar = 1;
+  List<String> orginList = [
+    'Brazilian',
+    'Arabica',
+    'Robusta',
+    'Liberica',
+    'Excelsa'
+  ];
+  List<String> sugarList = ['0Sp', '1Sp', '2Sp', '3Sp', '4Sp'];
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
   // manage Cup Size
   String _cupSize = '';
@@ -28,11 +36,11 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
   bool _isCupSizeS = false;
   bool _isCupSizeL = false;
   // manage coffee
-  String _Coffee = '';
+  String _coffee = '';
   bool _isCoffeCold = false;
   bool _isCoffeHot = false;
   // manage roast
-  String _Roast = '';
+  String _roast = '';
   bool _isRoastLight = false;
   bool _isRoastMediam = false;
   bool _isRoastDark = false;
@@ -55,6 +63,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
   bool _isExtraNuts = false;
   @override
   Widget build(BuildContext context) {
+    double height(double n) {
+      return MediaQuery.of(context).size.height * (n / 851);
+    }
+
+    double width(double n) {
+      return MediaQuery.of(context).size.width * (n / 393);
+    }
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white,
       statusBarBrightness: Brightness.dark,
@@ -67,13 +83,13 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
         builder: () => Scaffold(
           key: _scaffoldKey,
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(77.h),
+            preferredSize: Size.fromHeight(height(77)),
             child: AppBar(
               elevation: 0,
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
               leading: IconButton(
-                icon: Icon(Icons.menu, size: 40.w),
+                icon: Icon(Icons.menu, size: width(40)),
                 onPressed: () => _scaffoldKey.currentState?.openDrawer(),
               ),
               title: Center(
@@ -94,27 +110,27 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 34.h,
+                  height: height(34),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 84.w, right: 64.w),
+                  padding: EdgeInsets.only(left: width(84), right: width(64)),
                   child: SvgPicture.asset(
                     'assets/images/cup.svg',
-                    width: 245.w,
-                    height: 147.h,
+                    width: width(245),
+                    height: height(147),
                   ),
                 ),
                 SizedBox(
-                  height: 31.h,
+                  height: height(31),
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 33.w,
+                      width: width(33),
                     ),
-                    ContainerText('Cup Size', 113.w, 33.h, 25.sp),
+                    ContainerText('Cup Size', width(113), height(33), 25),
                     SizedBox(
-                      width: 5.w,
+                      width: width(5),
                     ),
                     InkWell(
                         onTap: () {
@@ -126,9 +142,9 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           });
                         },
                         child: ContainerChoose(
-                            'S', 63.w, 36.h, 25.sp, _isCupSizeS)),
+                            'S', width(63), height(36), 25, _isCupSizeS)),
                     SizedBox(
-                      width: 14.w,
+                      width: width(14),
                     ),
                     InkWell(
                         onTap: () {
@@ -140,9 +156,9 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           });
                         },
                         child: ContainerChoose(
-                            'M', 63.w, 36.h, 25.sp, _isCupSizeM)),
+                            'M', width(63), height(36), 25, _isCupSizeM)),
                     SizedBox(
-                      width: 14.w,
+                      width: width(14),
                     ),
                     InkWell(
                         onTap: () {
@@ -154,61 +170,61 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           });
                         },
                         child: ContainerChoose(
-                            'L', 63.w, 36.h, 25.sp, _isCupSizeL)),
+                            'L', width(63), height(36), 25, _isCupSizeL)),
                     SizedBox(
-                      width: 25.w,
+                      width: width(25),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 33.w,
+                      width: width(33),
                     ),
-                    ContainerText('Coffee', 122.w, 33.h, 25.sp),
+                    ContainerText('Coffee', width(122), height(33), 25),
                     InkWell(
                         onTap: () {
                           setState(() {
-                            _Coffee = 'Hot';
+                            _coffee = 'Hot';
                             _isCoffeHot = !_isCoffeHot;
                             _isCoffeCold = false;
                           });
                         },
                         child: ContainerChoose(
-                            'Hot', 95.w, 36.h, 18.sp, _isCoffeHot)),
+                            'Hot', width(95), height(36), 18, _isCoffeHot)),
                     SizedBox(
-                      width: 27.w,
+                      width: width(27),
                     ),
                     InkWell(
                         onTap: () {
                           setState(() {
-                            _Coffee = 'Cold';
+                            _coffee = 'Cold';
                             _isCoffeCold = !_isCoffeCold;
                             _isCoffeHot = false;
                           });
                         },
                         child: ContainerChoose(
-                            'Cold', 95.w, 36.h, 18.sp, _isCoffeCold)),
+                            'Cold', width(95), height(36), 18, _isCoffeCold)),
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(64),
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 33.w,
+                      width: width(33),
                     ),
-                    ContainerText('Orgin', 126.w, 33.h, 25.sp),
+                    ContainerText('Orgin', width(126), height(33), 25),
                     SizedBox(
-                      width: 52.w,
+                      width: width(52),
                     ),
                     Container(
-                      width: 135.w,
-                      height: 36.h,
+                      width: width(135),
+                      height: height(36),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(11)),
                           border: Border.all(
@@ -216,19 +232,19 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           color: const Color(0xffffffff)),
                       child: DropdownButton(
                         value: _valueOrgin,
-                        icon: Icon(Icons.arrow_drop_down),
                         underline: SizedBox(),
                         items: [
                           DropdownMenuItem(
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(19.w, 0, 23.w, 0),
-                                child: Text(
+                                padding: EdgeInsets.fromLTRB(
+                                    width(19), 0, width(23), 0),
+                                child: AutoSizeText(
                                   'Brazilian',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontFamily: "Roboto",
-                                      fontSize: 14.sp),
+                                      fontSize: 14),
                                 ),
                               ),
                             ),
@@ -237,13 +253,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(19.w, 0, 23.w, 0),
-                                child: Text(
+                                padding: EdgeInsets.fromLTRB(
+                                    width(19), 0, width(23), 0),
+                                child: AutoSizeText(
                                   'Arabica',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontFamily: "Roboto",
-                                      fontSize: 14.sp),
+                                      fontSize: 14),
                                 ),
                               ),
                             ),
@@ -252,13 +269,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(19.w, 0, 23.w, 0),
-                                child: Text(
+                                padding: EdgeInsets.fromLTRB(
+                                    width(19), 0, width(23), 0),
+                                child: AutoSizeText(
                                   'Robusta',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontFamily: "Roboto",
-                                      fontSize: 14.sp),
+                                      fontSize: 14),
                                 ),
                               ),
                             ),
@@ -267,13 +285,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(19.w, 0, 23.w, 0),
-                                child: Text(
+                                padding: EdgeInsets.fromLTRB(
+                                    width(19), 0, width(23), 0),
+                                child: AutoSizeText(
                                   'Liberica',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontFamily: "Roboto",
-                                      fontSize: 14.sp),
+                                      fontSize: 14),
                                 ),
                               ),
                             ),
@@ -282,13 +301,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(19.w, 0, 23.w, 0),
-                                child: Text(
+                                padding: EdgeInsets.fromLTRB(
+                                    width(19), 0, width(23), 0),
+                                child: AutoSizeText(
                                   'Excelsa',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontFamily: "Roboto",
-                                      fontSize: 14.sp),
+                                      fontSize: 14),
                                 ),
                               ),
                             ),
@@ -305,69 +325,69 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 33.w,
+                      width: width(33),
                     ),
-                    ContainerText('Roast', 100.w, 33.h, 25.sp),
+                    ContainerText('Roast', width(100), height(33), 25),
                     InkWell(
                         onTap: () {
                           setState(() {
-                            _Roast = 'Light';
+                            _roast = 'Light';
                             _isRoastLight = !_isRoastLight;
                             _isRoastDark = false;
                             _isRoastMediam = false;
                           });
                         },
                         child: ContainerChoose(
-                            'Light', 73.w, 36.h, 18.sp, _isRoastLight)),
+                            'Light', width(73), height(36), 18, _isRoastLight)),
                     SizedBox(
-                      width: 8.w,
+                      width: width(8),
                     ),
                     InkWell(
                         onTap: () {
                           setState(() {
-                            _Roast = 'Mediam';
+                            _roast = 'Mediam';
                             _isRoastMediam = !_isRoastMediam;
                             _isRoastLight = false;
                             _isRoastDark = false;
                           });
                         },
-                        child: ContainerChoose(
-                            'Mediam', 73.w, 36.h, 18.sp, _isRoastMediam)),
+                        child: ContainerChoose('Mediam', width(73), height(36),
+                            18, _isRoastMediam)),
                     SizedBox(
-                      width: 8.w,
+                      width: width(8),
                     ),
                     InkWell(
                         onTap: () {
                           setState(() {
-                            _Roast = 'Dark';
+                            _roast = 'Dark';
                             _isRoastDark = !_isRoastDark;
                             _isRoastLight = false;
                             _isRoastMediam = false;
                           });
                         },
                         child: ContainerChoose(
-                            'Dark', 73.w, 36.h, 18.sp, _isRoastDark)),
+                            'Dark', width(73), height(36), 18, _isRoastDark)),
                     SizedBox(
-                      width: 25.w,
+                      width: width(25),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 33.w,
+                      width: width(33),
                     ),
-                    ContainerText('Sugar Type', 131.w, 33.h, 25.sp),
+                    ContainerText('Sugar Type', width(131), height(33), 25),
                     SizedBox(
-                      width: 15.w,
+                      width: width(15),
                     ),
                     InkWell(
                         onTap: () {
@@ -377,10 +397,10 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                             _isSugarTypeDiet = false;
                           });
                         },
-                        child: ContainerChoose(
-                            'Normal', 90.w, 36.h, 16.sp, _isSugarTypeNormal)),
+                        child: ContainerChoose('Normal', width(90), height(36),
+                            16, _isSugarTypeNormal)),
                     SizedBox(
-                      width: 9.w,
+                      width: width(9),
                     ),
                     InkWell(
                         onTap: () {
@@ -390,38 +410,40 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                             _isSugarTypeNormal = false;
                           });
                         },
-                        child: ContainerChoose(
-                            'Diet', 90.w, 36.h, 16.sp, _isSugarTypeDiet)),
+                        child: ContainerChoose('Diet', width(90), height(36),
+                            16, _isSugarTypeDiet)),
                     SizedBox(
-                      width: 25.w,
+                      width: width(25),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
                 Row(
                   children: [
                     SizedBox(
-                      width: 33.w,
+                      width: width(33),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 27.w),
-                      child: Text(
+                      padding: EdgeInsets.only(right: width(27)),
+                      child: AutoSizeText(
                         'Sugar amount',
                         style: TextStyle(
                             color: const Color(0xff000000),
                             fontWeight: FontWeight.w400,
                             fontFamily: "Roboto",
-                            fontSize: 25.sp),
+                            fontStyle: FontStyle.normal,
+                            fontSize: 25),
+                        textAlign: TextAlign.left,
                       ),
                     ),
                     SizedBox(
-                      width: 27.w,
+                      width: width(27),
                     ),
                     Container(
-                      width: 100.w,
-                      height: 36.h,
+                      width: width(100),
+                      height: height(36),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(11)),
                           border: Border.all(
@@ -435,13 +457,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                                 child: Padding(
-                              padding: EdgeInsets.fromLTRB(9.5.w, 0, 7.12.w, 0),
-                              child: Text(
+                              padding: EdgeInsets.fromLTRB(
+                                  width(9.5), 0, width(7.12), 0),
+                              child: AutoSizeText(
                                 '0Sp',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "Roboto",
-                                    fontSize: 15.sp),
+                                    fontSize: 15),
                               ),
                             )),
                             value: 1,
@@ -449,13 +472,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                                 child: Padding(
-                              padding: EdgeInsets.fromLTRB(21.w, 0, 7.12.w, 0),
-                              child: Text(
+                              padding: EdgeInsets.fromLTRB(
+                                  width(9.5), 0, width(7.12), 0),
+                              child: AutoSizeText(
                                 '1Sp',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "Roboto",
-                                    fontSize: 15.sp),
+                                    fontSize: 15),
                               ),
                             )),
                             value: 2,
@@ -463,13 +487,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                                 child: Padding(
-                              padding: EdgeInsets.fromLTRB(9.5.w, 0, 7.12.w, 0),
-                              child: Text(
+                              padding: EdgeInsets.fromLTRB(
+                                  width(9.5), 0, width(7.12), 0),
+                              child: AutoSizeText(
                                 '2Sp',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "Roboto",
-                                    fontSize: 15.sp),
+                                    fontSize: 15),
                               ),
                             )),
                             value: 3,
@@ -477,13 +502,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                                 child: Padding(
-                              padding: EdgeInsets.fromLTRB(9.5.w, 0, 7.12.w, 0),
-                              child: Text(
+                              padding: EdgeInsets.fromLTRB(
+                                  width(9.5), 0, width(7.12), 0),
+                              child: AutoSizeText(
                                 '3Sp',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "Roboto",
-                                    fontSize: 15.sp),
+                                    fontSize: 15),
                               ),
                             )),
                             value: 4,
@@ -491,13 +517,14 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                           DropdownMenuItem(
                             child: Center(
                                 child: Padding(
-                              padding: EdgeInsets.fromLTRB(9.5.w, 0, 7.12.w, 0),
-                              child: Text(
+                              padding: EdgeInsets.fromLTRB(
+                                  width(9.5), 0, width(7.12), 0),
+                              child: AutoSizeText(
                                 '4Sp',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontFamily: "Roboto",
-                                    fontSize: 14.sp),
+                                    fontSize: 14),
                               ),
                             )),
                             value: 5,
@@ -513,16 +540,16 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
                 Column(
                   children: [
                     Row(
                       children: [
                         SizedBox(
-                          width: 33.w,
+                          width: width(33),
                         ),
-                        ContainerText('Flavor', 86.w, 33.h, 25.sp),
+                        ContainerText('Flavor', width(86), height(33), 25),
                         InkWell(
                             onTap: () {
                               setState(() {
@@ -534,10 +561,10 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                                 _isFlavorVanilia = false;
                               });
                             },
-                            child: ContainerChoose('Caramel', 95.w, 36.h, 18.sp,
-                                _isFlavorCaramel)),
+                            child: ContainerChoose('Caramel', width(95),
+                                height(36), 18, _isFlavorCaramel)),
                         SizedBox(
-                          width: 27.w,
+                          width: width(27),
                         ),
                         InkWell(
                           onTap: () {
@@ -550,18 +577,18 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                               _isFlavorCaramel = false;
                             });
                           },
-                          child: ContainerChoose(
-                              'Vanilia', 95.w, 36.h, 18.sp, _isFlavorVanilia),
+                          child: ContainerChoose('Vanilia', width(95),
+                              height(36), 18, _isFlavorVanilia),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 14.h,
+                      height: height(14),
                     ),
                     Row(
                       children: [
                         SizedBox(
-                          width: 20.w,
+                          width: width(20),
                         ),
                         InkWell(
                           onTap: () {
@@ -574,11 +601,11 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                               _isFlavorCaramel = false;
                             });
                           },
-                          child: ContainerChoose('Pumpkin Spice', 110.w, 36.h,
-                              16.sp, _isFlavorPumpkinSpice),
+                          child: ContainerChoose('Pumpkin Spice', width(110),
+                              height(36), 16, _isFlavorPumpkinSpice),
                         ),
                         SizedBox(
-                          width: 27.w,
+                          width: width(27),
                         ),
                         InkWell(
                           onTap: () {
@@ -591,11 +618,11 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                               _isFlavorCaramel = false;
                             });
                           },
-                          child: ContainerChoose(
-                              'Mocha', 95.w, 36.h, 18.sp, _isFlavorMocha),
+                          child: ContainerChoose('Mocha', width(95), height(36),
+                              18, _isFlavorMocha),
                         ),
                         SizedBox(
-                          width: 27.w,
+                          width: width(27),
                         ),
                         InkWell(
                           onTap: () {
@@ -608,24 +635,24 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                               _isFlavorCaramel = false;
                             });
                           },
-                          child: ContainerChoose(
-                              'Hazelnut', 95.w, 36.h, 18.sp, _isFlavorHazelnut),
+                          child: ContainerChoose('Hazelnut', width(95),
+                              height(36), 18, _isFlavorHazelnut),
                         ),
                       ],
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
                 Column(
                   children: [
                     Row(
                       children: [
                         SizedBox(
-                          width: 33.w,
+                          width: width(33),
                         ),
-                        ContainerText('Extra', 86.w, 33.h, 25.sp),
+                        ContainerText('Extra', width(86), height(33), 25),
                         InkWell(
                           onTap: () {
                             setState(() {
@@ -636,11 +663,11 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                               _isExtraNuts = false;
                             });
                           },
-                          child: ContainerChoose('Whipping cream', 115.w, 36.h,
-                              16.sp, _isExtraWhippingCream),
+                          child: ContainerChoose('Whipping cream', width(115),
+                              height(36), 16, _isExtraWhippingCream),
                         ),
                         SizedBox(
-                          width: 27.w,
+                          width: width(27),
                         ),
                         InkWell(
                           onTap: () {
@@ -652,18 +679,18 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                               _isExtraNuts = false;
                             });
                           },
-                          child: ContainerChoose('Caramel sauce', 115.w, 36.h,
-                              16.sp, _isExtraCaramelSauce),
+                          child: ContainerChoose('Caramel sauce', width(115),
+                              height(36), 16, _isExtraCaramelSauce),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 14.h,
+                      height: height(14),
                     ),
                     Row(
                       children: [
                         SizedBox(
-                          width: 120.w,
+                          width: width(120),
                         ),
                         InkWell(
                           onTap: () {
@@ -675,12 +702,10 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                               _isExtraNuts = false;
                             });
                           },
-                          child: ContainerChoose('Chocolate sauce', 115.w, 36.h,
-                              16.sp, _isExtraChocolateSauce),
+                          child: ContainerChoose('Chocolate sauce', width(115),
+                              height(36), 16, _isExtraChocolateSauce),
                         ),
-                        SizedBox(
-                          width: 27.w,
-                        ),
+                        SizedBox(width: width(27)),
                         InkWell(
                             onTap: () {
                               setState(() {
@@ -691,31 +716,32 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                                 _isExtraChocolateSauce = false;
                               });
                             },
-                            child: ContainerChoose(
-                                'Nuts', 115.w, 36.h, 18.sp, _isExtraNuts)),
+                            child: ContainerChoose('Nuts', width(115),
+                                height(36), 16, _isExtraNuts)),
                       ],
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
                 Container(
-                  height: 56.h,
-                  width: 180.w,
+                  height: height(56),
+                  width: width(180),
                   child: ElevatedButton(
                     onPressed: () {
                       Provider.of<MakeCoffeeProvider>(context, listen: false)
                           .makeCoffee(
                         makeCoffeeModel: MakeCoffeeModel(
-                            cupSize: 'S',
-                            coffeetype: 'Hot',
-                            orgin: 'Excelsa',
-                            roast: 'Dark',
-                            sugarType: 'deit',
-                            sugarAmount: '0Sp',
-                            flavor: 'dsdas',
-                            extra: 'nuts'),
+                          cupSize: _cupSize,
+                          coffeetype: _coffee,
+                          orgin: orginList[_valueOrgin - 1],
+                          roast: _roast,
+                          sugarType: _sugarType,
+                          sugarAmount: sugarList[_valueSugar - 1],
+                          flavor: _flavor,
+                          extra: _extra,
+                        ),
                       );
                     },
                     child: AutoSizeText('Done',
@@ -729,7 +755,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 46.h,
+                  height: height(46),
                 ),
               ],
             ),
