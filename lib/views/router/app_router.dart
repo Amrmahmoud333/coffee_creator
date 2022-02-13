@@ -1,3 +1,4 @@
+import 'package:coffee_creator/views/coffee_details/coffee_details_screen.dart';
 import 'package:coffee_creator/views/favorite_drinks/screens/favorite_drinks_screen.dart';
 import 'package:coffee_creator/views/home/home_screen.dart';
 import 'package:coffee_creator/views/login/login_screen.dart';
@@ -27,6 +28,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => SavedDrinks());
       case FavoriteDrinksScreen.routeName:
         return MaterialPageRoute(builder: (_) => FavoriteDrinksScreen());
+      case CoffeeDetailsScreen.routeName:
+        return MaterialPageRoute(builder: (_) => CoffeeDetailsScreen());
       default:
         return MaterialPageRoute(builder: (_) => WelcomeScreen());
     }

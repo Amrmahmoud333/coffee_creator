@@ -1,8 +1,20 @@
 import 'package:coffee_creator/data/models/make_your_coffee_model/make_coffee_model.dart';
+import 'package:dio/dio.dart';
 
 import 'dio_helper.dart';
 
 class MakeCoffeeAPI {
+  Future<dynamic> getCoffeeData(
+    String userId,
+    String authToken,
+  ) async {
+    final response = await DioHelper.getData(
+      url:
+          'https://coffee-creator-default-rtdb.firebaseio.com/make_coffee/$userId.json?auth=$authToken',
+    );
+    return MakeCoffeeModel.fromJson(response.data);
+  }
+
   Future<dynamic> postCoffeeData(
     String userId,
     String authToken,
