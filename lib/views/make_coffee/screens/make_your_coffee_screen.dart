@@ -741,6 +741,8 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                         extra: _extra,
                       ),
                     );
+                    Provider.of<MakeCoffeeProvider>(context, listen: false)
+                        .coffeeDetails();
                     Navigator.pushNamed(context, CoffeeDetailsScreen.routeName);
                   },
                   child: AutoSizeText('Done',
