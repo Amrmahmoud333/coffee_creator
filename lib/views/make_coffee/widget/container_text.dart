@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class ContainerText extends StatelessWidget {
@@ -10,7 +11,7 @@ class ContainerText extends StatelessWidget {
     return Container(
       width: width,
       height: hight,
-      child: Text(
+      child: AutoSizeText(
         text,
         style: TextStyle(
             color: const Color(0xff000000),
