@@ -31,7 +31,7 @@ class DrawerScreen extends StatelessWidget {
                   CircleAvatar(
                     radius: 35,
                     backgroundColor: Colors.blue,
-                    child: Text(
+                    child: AutoSizeText(
                       "T",
                       style: TextStyle(fontSize: 40.0),
                     ),

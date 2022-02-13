@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ContainerText extends StatelessWidget {
   final text;
   final width, hight;
-  final fontSize;
+  final double fontSize;
   ContainerText(this.text, this.width, this.hight, this.fontSize);
   @override
   Widget build(BuildContext context) {
