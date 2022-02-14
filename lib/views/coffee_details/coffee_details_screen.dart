@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/data/models/make_your_coffee_model/make_coffee_model.dart';
 import 'package:coffee_creator/providers/make_coffee_provider/make_coffee_provider.dart';
 import 'package:coffee_creator/views/drawer/drawer.dart';
 import 'package:flutter/material.dart';
@@ -86,20 +87,26 @@ class CoffeeDetailsScreen extends StatelessWidget {
             SizedBox(
               height: height(17),
             ),
-            Container(
-              width: width(256),
-              child: Consumer<MakeCoffeeProvider>(
-                builder: (context, value, _) => AutoSizeText(
-                    value.coffeeDetails().toString(),
-                    style: const TextStyle(
-                        color: const Color(0xff000000),
-                        fontWeight: FontWeight.w400,
-                        fontFamily: "Roboto",
-                        fontStyle: FontStyle.normal,
-                        fontSize: 25.0),
-                    textAlign: TextAlign.left),
-              ),
-            ),
+            FutureBuilder<MakeCoffeeModel>(
+                future:
+                    Provider.of<MakeCoffeeProvider>(context).coffeeDetails(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done &&
+                      snapshot.hasData)
+                    return Container(
+                      width: width(256),
+                      child: AutoSizeText(snapshot.data!.coffeetype.toString(),
+                          style: const TextStyle(
+                              color: const Color(0xff000000),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: "Roboto",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 25.0),
+                          textAlign: TextAlign.left),
+                    );
+                  else
+                    return CircularProgressIndicator();
+                }),
             SizedBox(
               height: height(27),
             ),

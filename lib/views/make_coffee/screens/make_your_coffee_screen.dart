@@ -727,8 +727,9 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                 height: height(56),
                 width: width(180),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Provider.of<MakeCoffeeProvider>(context, listen: false)
+                  onPressed: () async {
+                    await Provider.of<MakeCoffeeProvider>(context,
+                            listen: false)
                         .makeCoffee(
                       makeCoffeeModel: MakeCoffeeModel(
                         cupSize: _cupSize,
@@ -741,8 +742,6 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                         extra: _extra,
                       ),
                     );
-                    Provider.of<MakeCoffeeProvider>(context, listen: false)
-                        .coffeeDetails();
                     Navigator.pushNamed(context, CoffeeDetailsScreen.routeName);
                   },
                   child: AutoSizeText('Done',

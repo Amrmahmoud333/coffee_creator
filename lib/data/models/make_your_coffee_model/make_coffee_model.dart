@@ -8,17 +8,17 @@ class MakeCoffeeModel {
   String? flavor;
   String? extra;
   MakeCoffeeModel({
-    required this.cupSize,
-    required this.coffeetype,
-    required this.orgin,
-    required this.roast,
-    required this.sugarType,
-    required this.sugarAmount,
-    required this.flavor,
-    required this.extra,
+    this.cupSize,
+     this.coffeetype,
+     this.orgin,
+     this.roast,
+     this.sugarType,
+     this.sugarAmount,
+     this.flavor,
+     this.extra,
   });
 
-  factory MakeCoffeeModel.fromJson(Map<String, String> json) {
+  factory MakeCoffeeModel.fromJson(Map<String, dynamic> json) {
     return MakeCoffeeModel(
       cupSize: json['cupSize'],
       coffeetype: json['coffeetype'],

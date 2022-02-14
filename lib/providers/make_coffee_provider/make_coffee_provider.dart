@@ -9,6 +9,8 @@ class MakeCoffeeProvider extends ChangeNotifier {
   CoffeeDetailsRepo coffeeDetailsRepo = CoffeeDetailsRepo();
   String token = AuthRepo.authResponseModel.token.toString();
   String userId = AuthRepo.authResponseModel.userID.toString();
+  var res;
+
   Future<void> makeCoffee({MakeCoffeeModel? makeCoffeeModel}) async {
     try {
       await makeCoffeeAPI.postCoffeeData(userId, token, makeCoffeeModel!);
@@ -17,11 +19,13 @@ class MakeCoffeeProvider extends ChangeNotifier {
     }
   }
 
-  Future<dynamic> coffeeDetails() async {
+  Future<MakeCoffeeModel> coffeeDetails() async {
     try {
-      return await coffeeDetailsRepo.cofeeDetailsRepo(userId, token);
+      res = await coffeeDetailsRepo.cofeeDetailsRepo(userId, token);
     } catch (e) {
       print(e.toString() + ' error from MakeCoffeeProvider');
     }
+    print('From MakeCoffeeProvider ${res.extra}');
+    return res;
   }
 }
