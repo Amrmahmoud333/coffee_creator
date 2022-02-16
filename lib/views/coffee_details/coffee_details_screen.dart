@@ -95,7 +95,17 @@ class CoffeeDetailsScreen extends StatelessWidget {
                       snapshot.hasData)
                     return Container(
                       width: width(256),
+<<<<<<< Updated upstream
                       child: AutoSizeText(snapshot.data!.coffeeType.toString(),
+=======
+                      child: AutoSizeText(
+                          snapshot.data!.coffeetype.toString() +
+                              ' coffee drink made using ' +
+                              snapshot.data!.flavor.toString() +
+                              ' with ' +
+                              snapshot.data!.roast.toString() +
+                              ' roast',
+>>>>>>> Stashed changes
                           style: const TextStyle(
                               color: const Color(0xff000000),
                               fontWeight: FontWeight.w400,
