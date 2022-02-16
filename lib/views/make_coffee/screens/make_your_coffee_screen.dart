@@ -19,9 +19,9 @@ class MakeYourCoffeScreen extends StatefulWidget {
 }
 
 class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
-  int _valueOrgin = 1;
+  int _valueOrigin = 1;
   int _valueSugar = 1;
-  List<String> orginList = [
+  List<String> OriginList = [
     'Brazilian',
     'Arabica',
     'Robusta',
@@ -216,7 +216,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                   SizedBox(
                     width: width(33),
                   ),
-                  ContainerText('Orgin', width(126), height(33), 25.0),
+                  ContainerText('Origin', width(126), height(33), 25.0),
                   SizedBox(
                     width: width(52),
                   ),
@@ -229,7 +229,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                             color: const Color(0xffe6d6c7), width: 3),
                         color: const Color(0xffffffff)),
                     child: DropdownButton(
-                      value: _valueOrgin,
+                      value: _valueOrigin,
                       underline: SizedBox(),
                       items: [
                         DropdownMenuItem(
@@ -315,7 +315,7 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                       ],
                       onChanged: (dynamic v) {
                         setState(() {
-                          _valueOrgin = v;
+                          _valueOrigin = v;
                         });
                       },
                     ),
@@ -733,8 +733,8 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
                         .makeCoffee(
                       makeCoffeeModel: MakeCoffeeModel(
                         cupSize: _cupSize,
-                        coffeetype: _coffee,
-                        orgin: orginList[_valueOrgin - 1],
+                        coffeeType: _coffee,
+                        origin: OriginList[_valueOrigin - 1],
                         roast: _roast,
                         sugarType: _sugarType,
                         sugarAmount: sugarList[_valueSugar - 1],

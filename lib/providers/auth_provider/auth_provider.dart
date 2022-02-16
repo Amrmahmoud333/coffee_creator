@@ -1,16 +1,20 @@
+import 'package:coffee_creator/constants/auth_const.dart';
 import 'package:coffee_creator/data/models/auth_model/auth_model.dart';
 import 'package:coffee_creator/data/repositories/auth_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class AuthProvider with ChangeNotifier {
-  AuthRepo _authRepo = AuthRepo();
+  late AuthRepo _authRepo;
+  late AuthResponseModel _authResponseModel;
   late String errorMessage;
 
   Future<void> signUp(String email, String password) async {
     try {
-      await _authRepo.signUpRepo(email, password);
-      print(AuthRepo.authResponseModel.token);
+      _authResponseModel = await _authRepo.signUpRepo(email, password);
+      token = _authResponseModel.token;
+      userId = _authResponseModel.userID;
+      //print(AuthRepo.authResponseModel.token);
     } catch (error) {
       print(error.toString());
       throw error;
@@ -20,19 +24,19 @@ class AuthProvider with ChangeNotifier {
   Future<void> setUserData(UserData userData) async {
     try {
       await _authRepo.setUserDataRepo(
-          userData,
-          AuthRepo.authResponseModel.userID!,
-          AuthRepo.authResponseModel.token!);
-    } catch (erorr) {
-      print(erorr.toString());
-      throw erorr;
+          userData, _authResponseModel.userID!, _authResponseModel.token!);
+    } catch (error) {
+      print(error.toString());
+      throw error;
     }
   }
 
   Future<String> login(String email, String password) async {
     late String errorMessage;
     try {
-      await _authRepo.loginRepo(email, password);
+      _authResponseModel = await _authRepo.loginRepo(email, password);
+      token = _authResponseModel.token;
+      userId = _authResponseModel.userID;
       errorMessage = 'succeeded';
       //  print(_authRepo.authResponseModel.token);
     } on DioError catch (error) {

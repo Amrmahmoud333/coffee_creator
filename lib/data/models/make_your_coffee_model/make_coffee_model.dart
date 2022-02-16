@@ -1,7 +1,7 @@
 class MakeCoffeeModel {
   String? cupSize;
-  String? coffeetype;
-  String? orgin;
+  String? coffeeType;
+  String? origin;
   String? roast;
   String? sugarType;
   String? sugarAmount;
@@ -9,8 +9,8 @@ class MakeCoffeeModel {
   String? extra;
   MakeCoffeeModel({
     this.cupSize,
-     this.coffeetype,
-     this.orgin,
+     this.coffeeType,
+     this.origin,
      this.roast,
      this.sugarType,
      this.sugarAmount,
@@ -21,8 +21,8 @@ class MakeCoffeeModel {
   factory MakeCoffeeModel.fromJson(Map<String, dynamic> json) {
     return MakeCoffeeModel(
       cupSize: json['cupSize'],
-      coffeetype: json['coffeetype'],
-      orgin: json['orgin'],
+      coffeeType: json['coffeeType'],
+      origin: json['origin'],
       roast: json['roast'],
       sugarType: json['sugarType'],
       sugarAmount: json['sugarAmount'],
@@ -31,11 +31,11 @@ class MakeCoffeeModel {
     );
   }
 
-  Map<String, String> toJson() {
-    final Map<String, String> data = new Map<String, String>();
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['cupSize'] = this.cupSize.toString();
-    data['coffeetype'] = this.coffeetype.toString();
-    data['orgin'] = this.orgin.toString();
+    data['coffeeType'] = this.coffeeType.toString();
+    data['origin'] = this.origin.toString();
     data['roast'] = this.roast.toString();
     data['sugarType'] = this.sugarType.toString();
     data['sugarAmount'] = this.sugarAmount.toString();

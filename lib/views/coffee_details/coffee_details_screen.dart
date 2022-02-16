@@ -95,7 +95,7 @@ class CoffeeDetailsScreen extends StatelessWidget {
                       snapshot.hasData)
                     return Container(
                       width: width(256),
-                      child: AutoSizeText(snapshot.data!.coffeetype.toString(),
+                      child: AutoSizeText(snapshot.data!.coffeeType.toString(),
                           style: const TextStyle(
                               color: const Color(0xff000000),
                               fontWeight: FontWeight.w400,
