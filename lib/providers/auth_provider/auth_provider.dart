@@ -10,6 +10,7 @@ class AuthProvider with ChangeNotifier {
   late String errorMessage;
 
   Future<void> signUp(String email, String password) async {
+    _authRepo = AuthRepo();
     try {
       _authResponseModel = await _authRepo.signUpRepo(email, password);
       token = _authResponseModel.token;
@@ -22,6 +23,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> setUserData(UserData userData) async {
+    _authRepo = AuthRepo();
     try {
       await _authRepo.setUserDataRepo(
           userData, _authResponseModel.userID!, _authResponseModel.token!);
@@ -32,13 +34,14 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<String> login(String email, String password) async {
+    _authRepo = AuthRepo();
     late String errorMessage;
     try {
       _authResponseModel = await _authRepo.loginRepo(email, password);
       token = _authResponseModel.token;
       userId = _authResponseModel.userID;
       errorMessage = 'succeeded';
-      //  print(_authRepo.authResponseModel.token);
+      //print(_authResponseModel.token);
     } on DioError catch (error) {
       if (error.message.toString().contains('EMAIL_EXISTS')) {
         errorMessage = 'This email address is already in use.';
