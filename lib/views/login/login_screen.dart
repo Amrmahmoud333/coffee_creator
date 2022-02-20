@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:coffee_creator/providers/auth_provider/auth_provider.dart';
 import 'package:coffee_creator/views/home/home_screen.dart';
 import 'package:coffee_creator/views/sign_up/screens/sign_up_screen.dart';
+import 'package:coffee_creator/views/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,23 +16,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  late Sizer s;
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController paswwordController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey();
   var _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    double height(double n) {
-      return (MediaQuery.of(context).size.height -
-              MediaQuery.of(context).padding.top) *
-          (n / 851);
-    }
-
-    double width(double n) {
-      return MediaQuery.of(context).size.width * (n / 393);
-    }
-
+    s = Sizer(context: context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
@@ -61,10 +54,10 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         _isLoading = true;
       });
-      var res = await Provider.of<AuthProvider>(context,listen: false)
-          .login(emailController.text, paswwordController.text);
+      var res = await Provider.of<AuthProvider>(context, listen: false)
+          .login(emailController.text, passwordController.text);
       if (res == 'succeeded') {
-          Navigator.pushNamed(context, HomeScreen.routeName);
+        Navigator.pushNamed(context, HomeScreen.routeName);
       } else {
         _showErrorDialog(res);
       }
@@ -81,12 +74,12 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: height(69),
+                height: s.h(69),
               ), // 10
               Center(
                 child: Container(
-                  height: height(211),
-                  width: height(211),
+                  height: s.h(211),
+                  width: s.h(211),
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -99,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       )
                     ],
-                    borderRadius: BorderRadius.circular(height(211)),
+                    borderRadius: BorderRadius.circular(s.h(211)),
                     color: Colors.white,
                   ),
                   child: Center(
@@ -117,15 +110,15 @@ class _LoginScreenState extends State<LoginScreen> {
               Form(
                 key: _formKey,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width(40)),
+                  padding: EdgeInsets.symmetric(horizontal: s.w(40)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: height(23),
+                        height: s.h(23),
                       ),
                       Container(
-                        height: height(42),
+                        height: s.h(42),
                         child: TextFormField(
                           decoration: InputDecoration(
                             labelText: "Email",
@@ -142,10 +135,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: height(50),
+                        height: s.h(50),
                       ),
                       Container(
-                        height: height(42),
+                        height: s.h(42),
                         child: TextFormField(
                           decoration: InputDecoration(
                             labelText: "Password",
@@ -153,16 +146,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             border: OutlineInputBorder(),
                           ),
                           obscureText: true,
-                          controller: paswwordController,
+                          controller: passwordController,
                           validator: (value) {
                             if (value!.isEmpty || value.length < 5) {
                               return 'Password is too short!';
                             }
+                            return '';
                           },
                         ),
                       ),
                       SizedBox(
-                        height: height(4),
+                        height: s.h(4),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -183,11 +177,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               SizedBox(
-                height: height(55),
+                height: s.h(55),
               ),
               Container(
-                height: height(56), // 6
-                width: width(180),
+                height: s.h(56), // 6
+                width: s.w(180),
                 child: ElevatedButton(
                   onPressed: () async {
                     _submit();
@@ -200,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: height(50.5)),
+              SizedBox(height: s.h(50.5)),
               Row(
                 children: [
                   Expanded(
@@ -209,7 +203,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: width(10)),
+                    padding: EdgeInsets.symmetric(horizontal: s.w(10)),
                     child: AutoSizeText(
                       'OR',
                       style: TextStyle(fontSize: 23),
@@ -223,14 +217,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               SizedBox(
-                height: height(31.5),
+                height: s.h(31.5),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    width: width(136),
-                    height: height(43),
+                    width: s.w(136),
+                    height: s.h(43),
                     child: OutlinedButton(
                       onPressed: () {},
                       child: Row(
@@ -239,11 +233,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           Container(
                             child:
                                 SvgPicture.asset('assets/images/Facebook.svg'),
-                            width: width(20),
-                            height: height(30),
+                            width: s.w(20),
+                            height: s.h(30),
                           ),
                           SizedBox(
-                            width: width(2),
+                            width: s.w(2),
                           ),
                           AutoSizeText(
                             'Facebook',
@@ -254,8 +248,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Container(
-                    width: width(136),
-                    height: height(43),
+                    width: s.w(136),
+                    height: s.h(43),
                     child: OutlinedButton(
                       onPressed: () {},
                       child: Row(
@@ -263,11 +257,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Container(
                             child: SvgPicture.asset('assets/images/Google.svg'),
-                            width: width(20),
-                            height: height(30),
+                            width: s.w(20),
+                            height: s.h(30),
                           ),
                           SizedBox(
-                            width: width(2),
+                            width: s.w(2),
                           ),
                           AutoSizeText(
                             'Google',
@@ -281,13 +275,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               Spacer(),
               Container(
-                height: height(53), // 6
+                height: s.h(53), // 6
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(height(15)),
-                      topLeft: Radius.circular(height(15))),
+                      topRight: Radius.circular(s.h(15)),
+                      topLeft: Radius.circular(s.h(15))),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

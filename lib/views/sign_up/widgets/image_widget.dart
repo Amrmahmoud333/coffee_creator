@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../sizer.dart';
+
 class ImageWidget extends StatefulWidget {
   @override
   State<ImageWidget> createState() => _ImageWidgetState();
@@ -12,13 +14,7 @@ class ImageWidget extends StatefulWidget {
 
 class _ImageWidgetState extends State<ImageWidget> {
   File? image;
-  double height(double n) {
-    return MediaQuery.of(context).size.height * (n / 851);
-  }
-
-  double width(double n) {
-    return MediaQuery.of(context).size.width * (n / 393);
-  }
+  late Sizer s;
 
   Future pickImage(ImageSource imageSource) async {
     try {
@@ -33,27 +29,28 @@ class _ImageWidgetState extends State<ImageWidget> {
         this.image = imageTemporary;
       });
     } on PlatformException catch (e) {
-      print('Fiald to pick image: $e');
+      print('Failed to pick image: $e');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    s = Sizer(context: context);
     return Center(
       child: image != null
           ? setImageBuilder(
               Image.file(
                 this.image!,
-                width: height(169),
-                height: height(169),
+                width: s.h(169),
+                height: s.h(169),
                 fit: BoxFit.fill,
               ),
             )
           : setImageBuilder(
               Image.asset(
                 'assets/images/profile.png',
-                width: height(169),
-                height: height(169),
+                width: s.h(169),
+                height: s.h(169),
                 fit: BoxFit.fill,
               ),
             ),
@@ -71,7 +68,10 @@ class _ImageWidgetState extends State<ImageWidget> {
               child: Container(
                 width: 40,
                 color: Color(0xffb59c88).withOpacity(0.6),
-                child: Icon(Icons.add_a_photo_outlined,color: Colors.grey.shade700,),
+                child: Icon(
+                  Icons.add_a_photo_outlined,
+                  color: Colors.grey.shade700,
+                ),
               ),
             ),
           ],

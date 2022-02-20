@@ -3,6 +3,7 @@ import 'package:coffee_creator/data/models/auth_model/auth_model.dart';
 import 'package:coffee_creator/providers/auth_provider/auth_provider.dart';
 import 'package:coffee_creator/views/login/login_screen.dart';
 import 'package:coffee_creator/views/sign_up/widgets/image_widget.dart';
+import 'package:coffee_creator/views/sizer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,21 +14,13 @@ class SignUpScreen extends StatelessWidget {
   final TextEditingController fnameController = TextEditingController();
   final TextEditingController lnameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController paswwordController = TextEditingController();
-  final TextEditingController mobileNumaberController = TextEditingController();
-  late UserData userData;
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController mobileNumberController = TextEditingController();
+  late final UserData userData;
+  late Sizer s;
   @override
   Widget build(BuildContext context) {
-    double height(double n) {
-      return (MediaQuery.of(context).size.height -
-              MediaQuery.of(context).padding.top) *
-          (n / 851);
-    }
-
-    double width(double n) {
-      return MediaQuery.of(context).size.width * (n / 393);
-    }
-
+    s = Sizer(context: context);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.white,
     ));
@@ -43,18 +36,18 @@ class SignUpScreen extends StatelessWidget {
                 ImageWidget(),
                 Form(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: width(40)),
+                    padding: EdgeInsets.symmetric(horizontal: s.w(40)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: height(64),
+                          height: s.h(64),
                         ),
                         Row(
                           children: [
                             Expanded(
                               child: Container(
-                                height: height(42),
+                                height: s.h(42),
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                     labelText: 'First name',
@@ -65,11 +58,11 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width: width(17),
+                              width: s.w(17),
                             ),
                             Expanded(
                               child: Container(
-                                height: height(42),
+                                height: s.h(42),
                                 child: TextFormField(
                                   decoration: InputDecoration(
                                     labelText: 'Last name',
@@ -82,10 +75,10 @@ class SignUpScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: height(38),
+                          height: s.h(38),
                         ),
                         Container(
-                          height: height(42),
+                          height: s.h(42),
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: "Email",
@@ -96,53 +89,54 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: height(38),
+                          height: s.h(38),
                         ),
                         Container(
-                          height: height(42),
+                          height: s.h(42),
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: "Password",
                               prefixIcon: Icon(Icons.password),
                               border: OutlineInputBorder(),
                             ),
-                            controller: paswwordController,
+                            controller: passwordController,
                           ),
                         ),
                         SizedBox(
-                          height: height(40),
+                          height: s.h(40),
                         ),
                         Container(
-                          height: height(42),
+                          height: s.h(42),
                           child: TextFormField(
                             decoration: InputDecoration(
                               labelText: "Mobile number",
                               prefixIcon: Icon(Icons.phone_android),
                               border: OutlineInputBorder(),
                             ),
-                            controller: mobileNumaberController,
+                            controller: mobileNumberController,
                           ),
                         ),
                         SizedBox(
-                          height: height(36),
+                          height: s.h(36),
                         ),
                         Center(
                           child: Container(
-                            height: height(56), // 6
-                            width: width(180),
+                            height: s.h(56), // 6
+                            width: s.w(180),
                             child: ElevatedButton(
                               onPressed: () async {
                                 //Navigator.pushNamed(context, HomeScreen.routeName);
                                 userData = UserData(
-                                  fname: fnameController.text,
-                                  lname: lnameController.text,
-                                  email: emailController.text,
-                                  phone: mobileNumaberController.text
-                                );
+                                    fname: fnameController.text,
+                                    lname: lnameController.text,
+                                    email: emailController.text,
+                                    phone: mobileNumberController.text);
                                 await Provider.of<AuthProvider>(context,
                                         listen: false)
-                                    .signUp(emailController.text,
-                                        paswwordController.text);
+                                    .signUp(
+                                  emailController.text,
+                                  passwordController.text,
+                                );
                                 await Provider.of<AuthProvider>(context,
                                         listen: false)
                                     .setUserData(userData);
@@ -160,7 +154,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: height(50.5)),
+                SizedBox(height: s.h(50.5)),
                 Row(
                   children: [
                     Expanded(
@@ -169,7 +163,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width(10)),
+                      padding: EdgeInsets.symmetric(horizontal: s.w(10)),
                       child: AutoSizeText(
                         'OR',
                         style: TextStyle(fontSize: 23),
@@ -183,14 +177,14 @@ class SignUpScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: height(20.5),
+                  height: s.h(20.5),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Container(
-                      width: width(136),
-                      height: height(43),
+                      width: s.w(136),
+                      height: s.h(43),
                       child: OutlinedButton(
                         onPressed: () {},
                         child: Row(
@@ -199,11 +193,11 @@ class SignUpScreen extends StatelessWidget {
                             Container(
                               child: SvgPicture.asset(
                                   'assets/images/Facebook.svg'),
-                              width: width(20),
-                              height: height(30),
+                              width: s.w(20),
+                              height: s.h(30),
                             ),
                             SizedBox(
-                              width: width(2),
+                              width: s.w(2),
                             ),
                             AutoSizeText(
                               'Facebook',
@@ -215,8 +209,8 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      width: width(136),
-                      height: height(43),
+                      width: s.w(136),
+                      height: s.h(43),
                       child: OutlinedButton(
                         onPressed: () {},
                         child: Row(
@@ -225,11 +219,11 @@ class SignUpScreen extends StatelessWidget {
                             Container(
                               child:
                                   SvgPicture.asset('assets/images/Google.svg'),
-                              width: width(20),
-                              height: height(30),
+                              width: s.w(20),
+                              height: s.h(30),
                             ),
                             SizedBox(
-                              width: width(2),
+                              width: s.w(2),
                             ),
                             AutoSizeText(
                               'Google',
@@ -244,13 +238,13 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 Spacer(),
                 Container(
-                  height: height(53), // 6
+                  height: s.h(53), // 6
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.secondary,
                     borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(height(15)),
-                        topLeft: Radius.circular(height(15))),
+                        topRight: Radius.circular(s.h(15)),
+                        topLeft: Radius.circular(s.h(15))),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
