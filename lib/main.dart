@@ -1,3 +1,4 @@
+import 'package:coffee_creator/data/data_API/auth_API.dart';
 import 'package:coffee_creator/data/data_API/dio_helper.dart';
 import 'package:coffee_creator/providers/auth_provider/auth_provider.dart';
 import 'package:coffee_creator/views/router/app_router.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       statusBarIconBrightness: Brightness.dark,
     ));
     return ChangeNotifierProvider.value(
-      value: AuthProvider(),
+      value: AuthProvider(authRepo: AuthAPI()),
       child: MaterialApp(
         title: 'Coffee Creator',
         theme: ThemeData(

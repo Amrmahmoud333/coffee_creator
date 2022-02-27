@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/data/models/auth_model/auth_model.dart';
 import 'package:coffee_creator/providers/auth_provider/auth_provider.dart';
 import 'package:coffee_creator/views/home/home_screen.dart';
 import 'package:coffee_creator/views/sign_up/screens/sign_up_screen.dart';
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
         _isLoading = true;
       });
       var res = await Provider.of<AuthProvider>(context, listen: false)
-          .login(emailController.text, passwordController.text);
+          .login(AuthRequestModel(email: emailController.text, password: passwordController.text,));
       if (res == 'succeeded') {
         Navigator.pushNamed(context, HomeScreen.routeName);
       } else {
@@ -151,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (value!.isEmpty || value.length < 5) {
                               return 'Password is too short!';
                             }
-                            return '';
+                            return null;
                           },
                         ),
                       ),

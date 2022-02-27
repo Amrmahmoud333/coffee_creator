@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/constants/auth_const.dart';
 import 'package:coffee_creator/data/models/auth_model/auth_model.dart';
 import 'package:coffee_creator/providers/auth_provider/auth_provider.dart';
 import 'package:coffee_creator/views/login/login_screen.dart';
@@ -126,20 +127,26 @@ class SignUpScreen extends StatelessWidget {
                             child: ElevatedButton(
                               onPressed: () async {
                                 //Navigator.pushNamed(context, HomeScreen.routeName);
-                                userData = UserData(
-                                    fname: fnameController.text,
-                                    lname: lnameController.text,
-                                    email: emailController.text,
-                                    phone: mobileNumberController.text);
                                 await Provider.of<AuthProvider>(context,
-                                        listen: false)
+                                        listen: false,)
                                     .signUp(
-                                  emailController.text,
-                                  passwordController.text,
+                                  AuthRequestModel(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  ),
                                 );
-                                await Provider.of<AuthProvider>(context,
-                                        listen: false)
-                                    .setUserData(userData);
+                                userData = UserData(
+                                  fname: fnameController.text,
+                                  lname: lnameController.text,
+                                  email: emailController.text,
+                                  phone: mobileNumberController.text,
+                                  image: '',
+                                  id: userId!,
+                                );
+                                await Provider.of<AuthProvider>(
+                                  context,
+                                  listen: false,
+                                ).setUserData(userData);
                               },
                               child: AutoSizeText(
                                 'Sign up',

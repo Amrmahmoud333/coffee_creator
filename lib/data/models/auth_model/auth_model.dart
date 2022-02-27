@@ -1,44 +1,81 @@
 class AuthResponseModel {
-  String? token;
-  DateTime? expiryDate;
-  String? userID;
+  String token;
+  DateTime expiryDate;
+  String userID;
 
   AuthResponseModel({
-    this.token,
-    this.expiryDate,
-    this.userID,
+    required this.token,
+    required this.expiryDate,
+    required this.userID,
   });
 
-  AuthResponseModel.fromJson(Map<String, dynamic> json) {
-    token = json['idToken'];
-    expiryDate =
-        DateTime.now().add(Duration(seconds: int.parse(json['expiresIn'])));
-    userID = json['localId'];
+  factory AuthResponseModel.fromMap(Map<String, dynamic> map) {
+    return AuthResponseModel(
+      token: map['idToken'] ?? '',
+      expiryDate: DateTime.now().add(
+        Duration(
+          seconds: int.parse(map['expiresIn']),
+        ),
+      ),
+      userID: map['localId'] ?? '',
+    );
+  }
+}
+
+class AuthRequestModel {
+  String email;
+  String password;
+  bool returnSecureToken = true;
+
+  AuthRequestModel({
+    required this.email,
+    required this.password,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'email': email,
+      'password': password,
+      'returnSecureToken': returnSecureToken,
+    };
   }
 }
 
 class UserData {
-  String? id;
-  String? fname;
-  String? lname;
-  String? email;
-  String? phone;
-  String? image;
+  String id;
+  String fname;
+  String lname;
+  String email;
+  String phone;
+  String image;
   UserData({
-    this.id,
-    this.fname,
-    this.lname,
-    this.email,
-    this.phone,
-    this.image,
+    required this.id,
+    required this.fname,
+    required this.lname,
+    required this.email,
+    required this.phone,
+    required this.image,
   });
 
-  UserData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    fname = json['fname'];
-    lname = json['lName'];
-    email = json['email'];
-    phone = json['phone'];
-    image = json['image'];
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'fname': fname,
+      'lname': lname,
+      'email': email,
+      'phone': phone,
+      'image': image,
+    };
+  }
+
+  factory UserData.fromMap(Map<String, dynamic> map) {
+    return UserData(
+      id: map['id'] ?? '',
+      fname: map['fname'] ?? '',
+      lname: map['lname'] ?? '',
+      email: map['email'] ?? '',
+      phone: map['phone'] ?? '',
+      image: map['image'] ?? '',
+    );
   }
 }

@@ -1,21 +1,25 @@
-import 'package:coffee_creator/constants/auth_const.dart';
-import 'package:coffee_creator/data/models/auth_model/auth_model.dart';
-import 'package:coffee_creator/data/repositories/auth_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import 'package:coffee_creator/constants/auth_const.dart';
+import 'package:coffee_creator/data/models/auth_model/auth_model.dart';
+import 'package:coffee_creator/data/repositories/auth_repo.dart';
+
 class AuthProvider with ChangeNotifier {
-  late AuthRepo _authRepo;
+  AuthRepo authRepo;
   late AuthResponseModel _authResponseModel;
   late String errorMessage;
+  
+  AuthProvider({
+    required this.authRepo,
+  });
 
-  Future<void> signUp(String email, String password) async {
-    _authRepo = AuthRepo();
+  Future<void> signUp(AuthRequestModel authRequestModel) async {
     try {
-      _authResponseModel = await _authRepo.signUpRepo(email, password);
+      _authResponseModel = await authRepo.signUpRepo(authRequestModel);
       token = _authResponseModel.token;
       userId = _authResponseModel.userID;
-      //print(AuthRepo.authResponseModel.token);
+      print(token);
     } catch (error) {
       print(error.toString());
       throw error;
@@ -23,21 +27,22 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<void> setUserData(UserData userData) async {
-    _authRepo = AuthRepo();
     try {
-      await _authRepo.setUserDataRepo(
-          userData, _authResponseModel.userID!, _authResponseModel.token!);
+      await authRepo.setUserDataRepo(
+        userData,
+        _authResponseModel.userID,
+        _authResponseModel.token,
+      );
     } catch (error) {
       print(error.toString());
       throw error;
     }
   }
 
-  Future<String> login(String email, String password) async {
-    _authRepo = AuthRepo();
+  Future<String> login(AuthRequestModel authRequestModel) async {
     late String errorMessage;
     try {
-      _authResponseModel = await _authRepo.loginRepo(email, password);
+      _authResponseModel = await authRepo.loginRepo(authRequestModel);
       token = _authResponseModel.token;
       userId = _authResponseModel.userID;
       errorMessage = 'succeeded';
