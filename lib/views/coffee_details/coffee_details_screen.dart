@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/data/data_API/make_coffee_API.dart';
 import 'package:coffee_creator/data/models/make_your_coffee_model/make_coffee_model.dart';
 import 'package:coffee_creator/providers/make_coffee_provider/make_coffee_provider.dart';
 import 'package:coffee_creator/views/drawer/drawer.dart';
@@ -20,7 +21,8 @@ class CoffeeDetailsScreen extends StatelessWidget {
     }
 
     return ChangeNotifierProvider(
-      create: (context) => MakeCoffeeProvider(),
+      create: (context) =>
+          MakeCoffeeProvider(coffeeDetailsRepo: MakeCoffeeAPI()),
       builder: (context, _) => Scaffold(
         key: _scaffoldKey,
         backgroundColor: Colors.white,
@@ -95,17 +97,13 @@ class CoffeeDetailsScreen extends StatelessWidget {
                       snapshot.hasData)
                     return Container(
                       width: width(256),
-<<<<<<< Updated upstream
-                      child: AutoSizeText(snapshot.data!.coffeeType.toString(),
-=======
                       child: AutoSizeText(
-                          snapshot.data!.coffeetype.toString() +
+                          snapshot.data!.coffeeType.toString() +
                               ' coffee drink made using ' +
                               snapshot.data!.flavor.toString() +
                               ' with ' +
                               snapshot.data!.roast.toString() +
                               ' roast',
->>>>>>> Stashed changes
                           style: const TextStyle(
                               color: const Color(0xff000000),
                               fontWeight: FontWeight.w400,

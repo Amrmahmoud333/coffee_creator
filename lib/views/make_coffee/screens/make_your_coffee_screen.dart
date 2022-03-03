@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:coffee_creator/data/data_API/make_coffee_API.dart';
 import 'package:coffee_creator/data/models/make_your_coffee_model/make_coffee_model.dart';
 import 'package:coffee_creator/providers/make_coffee_provider/make_coffee_provider.dart';
 import 'package:coffee_creator/views/coffee_details/coffee_details_screen.dart';
@@ -77,7 +78,8 @@ class _MakeYourCoffeScreenState extends State<MakeYourCoffeScreen> {
       statusBarIconBrightness: Brightness.dark,
     ));
     return ChangeNotifierProvider(
-      create: (context) => MakeCoffeeProvider(),
+      create: (context) =>
+          MakeCoffeeProvider(coffeeDetailsRepo: MakeCoffeeAPI()),
       builder: (context, _) => Scaffold(
         key: _scaffoldKey,
         appBar: PreferredSize(

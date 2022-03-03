@@ -3,28 +3,29 @@ import 'package:coffee_creator/data/models/make_your_coffee_model/make_coffee_mo
 import 'package:coffee_creator/data/repositories/CoffeeDetailsRepo.dart';
 import 'package:flutter/widgets.dart';
 
-class MakeCoffeeProvider extends ChangeNotifier {
-  late CoffeeDetailsRepo _coffeeDetailsRepo;
-
+class MakeCoffeeProvider with ChangeNotifier {
+  CoffeeDetailsRepo coffeeDetailsRepo;
+  late MakeCoffeeModel _makeCoffeeModel;
   var res;
+  MakeCoffeeProvider({
+    required this.coffeeDetailsRepo,
+  });
 
   Future<void> makeCoffee({MakeCoffeeModel? makeCoffeeModel}) async {
-    _coffeeDetailsRepo = CoffeeDetailsRepo();
     try {
-      await _coffeeDetailsRepo.sendCoffeeDataRepo(makeCoffeeModel!);
+      await coffeeDetailsRepo.postCoffeeData(userId!, token!, makeCoffeeModel!);
     } catch (e) {
       print(e.toString() + ' error from MakeCoffeeProvider');
     }
   }
 
   Future<MakeCoffeeModel> coffeeDetails() async {
-    _coffeeDetailsRepo = CoffeeDetailsRepo();
     try {
-      res = await _coffeeDetailsRepo.coffeeDetailsRepo(userId!, token!);
+      res = await coffeeDetailsRepo.getCoffeeDetails(userId!, token!);
     } catch (e) {
       print(e.toString() + ' error from MakeCoffeeProvider');
     }
-    print('From MakeCoffeeProvider ${res.extra}');
+    //print('From MakeCoffeeProvider ${res.extra}');
     return res;
   }
 }
